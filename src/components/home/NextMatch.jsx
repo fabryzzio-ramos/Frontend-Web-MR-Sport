@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import SectionTitle from "./SectionTitle";
 import MatchCard from "../matches/MatchCard";
 import useScrollAnimation from "../../hooks/useScrollAnimation";
+import MatchCardSkeleton from "../skeletons/MatchCardSkeleton";
 
 function NextMatch() {
     const [partidos, setPartidos] = useState([]);
     const { ref, visible } = useScrollAnimation();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const cargarPartidos = async () => {
@@ -16,6 +18,8 @@ function NextMatch() {
                 setPartidos(data);
             } catch (error) {
                 console.error("Error cargando partidos", error.message);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -30,15 +34,16 @@ function NextMatch() {
                 {partidos.length === 0 ? (
                     <p className="text-center text-gray-400 mt-10">No hay partidos programados</p>
                 ) : (
-                    
                     <div className="grid gap-6
                     grid-cols-1
                     sm:grid-cols-2
                     lg:grid-cols-3
                     xl:grid-cols-4 mt-12">
-                        {partidos.map((partido) => (
-                        <MatchCard key={partido._id} partido={partido} />
-                        ))}
+                        {loading
+                            ? Array.from({ length:4 }).map((_, i) =>
+                            <MatchCardSkeleton key={i} />)
+                            : partidos.map((partido) => (
+                            <MatchCard key={partido._id} partido={partido} />))}
                     </div>
                 )}
 

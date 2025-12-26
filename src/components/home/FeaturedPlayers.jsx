@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { apiGet } from "../../services/api";
 import PlayerCard from "../team/PlayerCard";
 import useScrollAnimation from "../../hooks/useScrollAnimation";
+import PlayerCardSkeleton from "../skeletons/PlayerCardSkeleton";
 
 function FeaturedPlayers() {
     const [jugadores, setJugadores] = useState([]);
     const { ref, visible } = useScrollAnimation();
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
             const cargarJugadores = async () => {
@@ -14,6 +16,8 @@ function FeaturedPlayers() {
                     setJugadores(data);
                 } catch (error) {
                     console.error(error.message);
+                } finally {
+                setLoading(false);
                 }
             };
     
@@ -36,9 +40,12 @@ function FeaturedPlayers() {
                     <p className="text-center text-gray-400">Aún no hay jugadores</p>
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                        {jugadores.map((jugador) => (
-                            <PlayerCard key={jugador._id} jugador={jugador} />
-                        ))}
+                        {loading
+                            ? Array.from({ length: 6 }).map((_, i) => <PlayerCardSkeleton key={i} />)
+                            : jugadores.map((jugador) => (
+                                <PlayerCard key={jugador._id} jugador={jugador} />
+                        ))
+                        }
                     </div>
                 )}
                 

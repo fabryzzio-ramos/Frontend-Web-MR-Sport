@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { apiGet } from "../../services/api";
 import useScrollAnimation from "../../hooks/useScrollAnimation";
+import StoreCardSkeleton from "../skeletons/StoreCardSkeleton";
 
 function StorePreview() {
     const [productos, setProductos] = useState([]);
     const { ref, visible } = useScrollAnimation();
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const cargarProductos = async () => {
@@ -15,6 +17,8 @@ function StorePreview() {
                 setProductos(data);
             } catch (error) {
                 console.error(error.message);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -40,7 +44,9 @@ function StorePreview() {
                     <p className="text-center text-gray-400">Aún no hay productos</p>
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        {productos.map((producto) => (
+                        {loading
+                            ? Array.from({ length: 2 }).map((_, i) => <StoreCardSkeleton key={i} />)
+                            : productos.map((producto) => (
                             <StoreCard key={producto._id} producto={producto} />
                         ))}
                     </div>
