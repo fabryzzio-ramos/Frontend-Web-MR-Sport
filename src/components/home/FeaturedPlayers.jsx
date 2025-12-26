@@ -35,7 +35,7 @@ function FeaturedPlayers() {
                 {destacados.length ===  0 ? (
                     <p className="text-center text-gray-400">Aún no hay jugadores</p>
                 ) : (
-                    <div className="transition-all duration-700 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8" style={{ transitionDelay: `${index * 100}ms`}}>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                         {jugadores.map((jugador) => (
                             <PlayerCard key={jugador._id} jugador={jugador} />
                         ))}

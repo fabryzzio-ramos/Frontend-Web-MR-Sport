@@ -31,11 +31,11 @@ function NextMatch() {
                     <p className="text-center text-gray-400 mt-10">No hay partidos programados</p>
                 ) : (
                     
-                    <div className="transition-all duration-700 grid gap-6
+                    <div className="grid gap-6
                     grid-cols-1
                     sm:grid-cols-2
                     lg:grid-cols-3
-                    xl:grid-cols-4 mt-12" style={{ transitionDelay: `${index * 100}ms`}}>
+                    xl:grid-cols-4 mt-12">
                         {partidos.map((partido) => (
                         <MatchCard key={partido._id} partido={partido} />
                         ))}
