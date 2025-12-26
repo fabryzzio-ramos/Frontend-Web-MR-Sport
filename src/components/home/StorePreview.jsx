@@ -31,13 +31,13 @@ function StorePreview() {
                     <p className="text-gray-400 mb-8 max-w-md">Lleva contigo la pasión el esfuerzo y la identidad de MR Sport.
                         Productos oficiales diseñados para hinchas de verdad.
                     </p>
-                    <Link to="/tienda" className="inline-block bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-full font-semibold transition">Ir a la tienda </Link>
+                    <Link to="/tienda" className="inline-block w-full sm:w-auto text-center bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-full font-semibold transition">Ir a la tienda </Link>
                 </div>
 
                 {preview.length === 0 ? (
                     <p className="text-center text-gray-400">Aún no hay productos</p>
                 ) : (
-                    <div className="grid grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {productos.map((producto) => (
                             <StoreCard key={producto._id} producto={producto} />
                         ))}

@@ -10,17 +10,17 @@ function Hero() {
             {/* CONTENIDO */}
             <div className="relative z-10 max-w-7xl mx-auto px-6">
                 <div className="mx-w-3xl">
-                    <h2 className="text-4xl md:text-6xl font-extrabold leading-tight">
+                    <h2 className="text-4xl sm:text-5xl md:text-7xl font-extrabold leading-tight">
                         PASION <br />
                         <span className="text-red-600">QUE NO SE RINDE</span>
                     </h2>
-                    <p className="mt-6 max-w-xl text-gray-300">
+                    <p className="mt-4 md:mt-6 text-base md:text-lg max-w-md text-gray-300">
                         MR Sport no es solo un club.
                         Es sacrificio, disciplina y orgullo, somos una familia.
                     </p>
                 </div>
 
-                <div className="mt-10 flex felx-col sm:flex-row gap-4">
+                <div className="mt-6 flex flex-col sm:flex-row gap-4">
                     <Link to="/equipo" className="bg-red-600 px-8 py-3 font-semibold text-center hover:bg-red-700 transition rounded-full">Ver equipo</Link>
                     <Link to="/partidos" className="border border-white px-8 py-3 text-center hover:bg-white hover:text-black transition rounded-full">Próximo partido</Link>
                 </div>

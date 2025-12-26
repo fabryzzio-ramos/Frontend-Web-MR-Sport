@@ -2,7 +2,7 @@ function MatchCard({ partido }) {
     if (!partido) return null;
 
     return (
-        <div className="bg-[#020617] border border-white/10 rounded-3xl p-8 shadow-xl hover:shadow-red-500/10 hover:-translate-y-2 transition-all duration-300">
+        <div className="bg-[#020617] border border-white/10 rounded-3xl p-4 mb:p-6 text-sm md:text-base shadow-xl hover:shadow-red-500/10 hover:-translate-y-2 transition-all duration-300">
             {/* COMPETICION */}
             <p className="text-sm text-gray-400 text-center mb-6">{partido.competicion}</p>
 
