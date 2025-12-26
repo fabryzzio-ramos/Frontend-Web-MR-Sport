@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { apiGet } from "../../services/api";
 import PlayerCard from "../team/PlayerCard";
+import useScrollAnimation from "../../hooks/useScrollAnimation";
 
 function FeaturedPlayers() {
-    const [jugadores, setJugadores] = useState([])
+    const [jugadores, setJugadores] = useState([]);
+    const { ref, visible } = useScrollAnimation();
 
     useEffect(() => {
             const cargarJugadores = async () => {
@@ -21,7 +23,7 @@ function FeaturedPlayers() {
     const destacados = jugadores.slice(0, 6);
 
     return (
-        <section className="bg-gradient-to-b from-slate-900 to-[#020617] py-20">
+        <section ref={ref} className={`transition-all duration-1000 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"} bg-gradient-to-b from-slate-900 to-[#020617] py-20`}>
             <div className="max-w-7xl mx-auto px-6">
 
                 {/* HEADER */}
@@ -33,7 +35,7 @@ function FeaturedPlayers() {
                 {destacados.length ===  0 ? (
                     <p className="text-center text-gray-400">Aún no hay jugadores</p>
                 ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                    <div className="transition-all duration-700 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8" style={{ transitionDelay: `${index * 100}ms`}}>
                         {jugadores.map((jugador) => (
                             <PlayerCard key={jugador._id} jugador={jugador} />
                         ))}

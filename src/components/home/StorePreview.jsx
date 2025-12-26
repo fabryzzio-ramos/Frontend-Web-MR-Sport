@@ -2,9 +2,11 @@ import StoreCard from "../store/StoreCard";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { apiGet } from "../../services/api";
+import useScrollAnimation from "../../hooks/useScrollAnimation";
 
 function StorePreview() {
     const [productos, setProductos] = useState([]);
+    const { ref, visible } = useScrollAnimation();
 
     useEffect(() => {
         const cargarProductos = async () => {
@@ -22,7 +24,7 @@ function StorePreview() {
     const preview = productos.slice(0, 4);
 
     return (
-        <section className="bg-gradient-to-b from-[#020617] via-black to-[#020617] py-24">
+        <section ref={ref} className={`transition-all duration-1000 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"} bg-gradient-to-b from-[#020617] via-black to-[#020617] py-24`}>
             <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
                 {/* TEXTO */}
                 <div>
@@ -37,7 +39,7 @@ function StorePreview() {
                 {preview.length === 0 ? (
                     <p className="text-center text-gray-400">Aún no hay productos</p>
                 ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="transition-all duration-700 grid grid-cols-1 sm:grid-cols-2 gap-6" style={{ transitionDelay: `${index * 100}ms`}}>
                         {productos.map((producto) => (
                             <StoreCard key={producto._id} producto={producto} />
                         ))}

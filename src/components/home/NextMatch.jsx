@@ -3,11 +3,12 @@ import { apiGet } from "../../services/api";
 import { Link } from "react-router-dom";
 import SectionTitle from "./SectionTitle";
 import MatchCard from "../matches/MatchCard";
+import useScrollAnimation from "../../hooks/useScrollAnimation";
 
 function NextMatch() {
     const [partidos, setPartidos] = useState([]);
+    const { ref, visible } = useScrollAnimation();
 
-    console.log(apiGet("/partidos"));
     useEffect(() => {
         const cargarPartidos = async () => {
             try {
@@ -22,7 +23,7 @@ function NextMatch() {
     }, []);
 
     return (
-        <section className="bg-gradient-to-b from-black to-slate-900 px-10 py-20 ">
+        <section ref={ref} className={`transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"} bg-gradient-to-b from-black to-slate-900 px-10 py-20`}>
             <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
                 <SectionTitle title="Proximo Partido" subtitle="Calendario oficial del club" />
 
@@ -30,11 +31,11 @@ function NextMatch() {
                     <p className="text-center text-gray-400 mt-10">No hay partidos programados</p>
                 ) : (
                     
-                    <div className="grid gap-6
+                    <div className="transition-all duration-700 grid gap-6
                     grid-cols-1
                     sm:grid-cols-2
                     lg:grid-cols-3
-                    xl:grid-cols-4 mt-12">
+                    xl:grid-cols-4 mt-12" style={{ transitionDelay: `${index * 100}ms`}}>
                         {partidos.map((partido) => (
                         <MatchCard key={partido._id} partido={partido} />
                         ))}

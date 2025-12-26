@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
+import useScrollAnimation from "../../hooks/useScrollAnimation";
 
 function Hero() {
+    const { ref, visible } = useScrollAnimation();
+
     return (
-        <section className="relative h-[90vh] flex items-center justify-center bg-gradient-to-b from-black via-neutral-900 to-black">
+        <section ref={ref} className={`relative h-[90vh] flex items-center justify-center transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"} bg-gradient-to-b from-black via-neutral-900 to-black`}>
 
             {/* FONDO */}
             <img className="absolute inset-0 w-full h-full object-cover opacity-30 bg-black/40" />
