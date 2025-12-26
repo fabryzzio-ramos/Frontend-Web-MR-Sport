@@ -18,7 +18,7 @@ function FeaturedPlayers() {
             cargarJugadores();
         }, []);
 
-    const destacados = jugadores.splice(0, 6);
+    const destacados = jugadores.slice(0, 6);
 
     return (
         <section className="bg-gradient-to-b from-slate-900 to-[#020617] py-20">

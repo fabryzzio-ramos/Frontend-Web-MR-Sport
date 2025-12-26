@@ -19,7 +19,7 @@ function StorePreview() {
         cargarProductos();
     }, []);
 
-    const preview = productos.splice(0, 4);
+    const preview = productos.slice(0, 4);
 
     return (
         <section className="bg-gradient-to-b from-[#020617] via-black to-[#020617] py-24">
