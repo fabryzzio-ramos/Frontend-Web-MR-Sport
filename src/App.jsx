@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Suspense, lazy } from "react";
 import NavBar from "./components/common/Navbar";
 import Footer from "./components/common/Footer";
@@ -22,9 +23,14 @@ const AdminStore = lazy(() => import("./pages/admin/AdminStore"));
 
 function App() {
     return (
+        <>
+        <Helmet>
+            <title>PRUEBA</title>
+        </Helmet>
         <BrowserRouter>
             <AppLayout />   
         </BrowserRouter>
+        </>
     );
 }
 
