@@ -39,7 +39,7 @@ function StorePreview() {
                 {preview.length === 0 ? (
                     <p className="text-center text-gray-400">Aún no hay productos</p>
                 ) : (
-                    <div className="transition-all duration-700 grid grid-cols-1 sm:grid-cols-2 gap-6" style={{ transitionDelay: `${index * 100}ms`}}>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {productos.map((producto) => (
                             <StoreCard key={producto._id} producto={producto} />
                         ))}
