@@ -32,7 +32,7 @@ function AppLayout() {
     const isAdminRoute = location.pathname.startsWith("/admin");
 
     return (
-        <div className="min-h-screen bg-black text-white flex flex-col">
+        <div className="min-h-screen bg-slate-900 text-white flex flex-col">
             {!isAdminRoute && <NavBar />}
 
             <main className="flex-1">
