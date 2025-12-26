@@ -1,0 +1,59 @@
+import { useState } from "react";
+import { apiPost } from "../services/api";
+import { useNavigate, Link } from "react-router-dom";
+
+function Login() {
+    const [correo, setCorreo] = useState("");
+    const [contraseña, setContraseña] = useState("");
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        setError("");
+
+        try {
+            const data = await apiPost("/auth/login", {
+                correo,
+                contraseña
+            });
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("usuario", JSON.stringify(data.usuario));
+            navigate("/");
+        } catch (error) {
+            setError(error.message);
+        }
+    }
+
+    return (
+        <main className="min-h-screen bg-black flex items-center justify-center px-6">
+            <div className="w-full max-w-md">
+
+                {/* LOGO / CLUB */}
+                <div className="text-center mb-10">
+                    <h1 className="text-4xl font-extrabold text-white">MR SPORT</h1>
+                    <p className="text-gray-400">Acceso al panel del club</p>
+                </div>
+
+                {/* FORM */}
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <input type="email" placeholder="Correo" value={correo} onChange={(e) => setCorreo(e.target.value)} className="w-full bg-transparent border-b border-gray-700 py-3 text-white focus:outline-none focus:border-red-600 placeholder-gray-500" />
+                    <input type="password" placeholder="Contraseña" value={contraseña} onChange={(e) => setContraseña(e.target.value)} className="w-full bg-transparent border-b border-gray-700 py-3 text-white focus:outline-none focus:border-red-600 placeholder-gray-500" />
+                    {error && <p>{error}</p>}
+
+                    <button type="submit" className="w-full mt-8 bg-red-600 text-white py-3 rounded-full font-semibold hover:bg-red-700 transition">Iniciar sesión</button>
+                </form>
+
+                {/* FOOTER */}
+                <div className="text-center mt-8">
+                    <p className="text-gray-500 text-sm">
+                        ¿No tienes cuenta?{" "}
+                        <Link to="/registro" className="text-red-600 hover:underline">Registrate</Link>
+                    </p>
+                </div>
+            </div>
+        </main>
+    );
+}
+
+export default Login;
