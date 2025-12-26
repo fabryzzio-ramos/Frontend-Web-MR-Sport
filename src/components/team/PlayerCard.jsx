@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 function PlayerCard({ jugador }) {
     if (!jugador) return null;
     return (
@@ -20,4 +22,4 @@ function PlayerCard({ jugador }) {
     );
 }
 
-export default PlayerCard;
+export default memo(PlayerCard);

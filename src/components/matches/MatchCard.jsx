@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 function MatchCard({ partido }) {
     if (!partido) return null;
 
@@ -42,4 +44,4 @@ function MatchCard({ partido }) {
     );
 }
 
-export default MatchCard;
+export default memo(MatchCard);

@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 function StoreCard({ producto }) {
     return (
         <div className="bg-[#020617] rounded-2xl overflow-hidden border border-white/10 hover:border-red-500/50 transition">
@@ -11,4 +13,4 @@ function StoreCard({ producto }) {
     );
 }
 
-export default StoreCard;
+export default memo(StoreCard);
