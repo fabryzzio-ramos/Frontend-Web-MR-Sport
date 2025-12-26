@@ -1,10 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { isAuthenticated, logout } from "../../utils/auth";
 import { useEffect, useState } from "react";
 
 function NavBar() {
     const [scrolled, setScrolled] = useState(false);
-
+    const [open, setOpen] = useState(false);
+    
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 50);
@@ -29,20 +30,20 @@ function NavBar() {
                 {/* LOGO */}
                 <Link to="/" className="text-lg mb:text-xl font-extrabold text-red-500">MR SPORT</Link>
 
-                {/* NAV */}
+                {/* NAV DESKTOP */}
                 <nav className="hidden md:flex items-center gap-8 text-sm uppercase font-medium text-gray-200">
                     {/* LIINKS PRINCIPALES */}
                     <ul className="flex items-center gap-6 text-sm">
-                        <li className="hover:text-red-500 transition"><Link to="/">Inicio</Link></li>
-                        <li className="hover:text-red-500 transition"><Link to="/historia">Historia</Link></li>
-                        <li className="hover:text-red-500 transition"><Link to="/equipo">Equipo</Link></li>
-                        <li className="hover:text-red-500 transition"><Link to="/partidos">Partidos</Link></li>
-                        <li className="hover:text-red-500 transition"><Link to="/tienda">Tienda</Link></li>
-                        <li className="hover:text-red-500 transition"><Link to="/contacto">Contacto</Link></li>
+                        <DesktopLink to="/" label="Inicio" />
+                        <DesktopLink to="/historia" label="Historia" />
+                        <DesktopLink to="/equipo" label="Equipo" />
+                        <DesktopLink to="/partidos" label="Partidos" />
+                        <DesktopLink to="/tienda" label="Tienda" />
+                        <DesktopLink to="/contacto" label="Contacto" />
                     </ul>
 
                     {/* SOLO ADMIN */}
-                    {user && user.rol === "admin" && <Link to="/admin" className="text-yellow-400 hover:text-yellow-300 transition">Admin</Link>}
+                    {user?.rol === "admin" && <Link to="/admin" className="text-yellow-400 hover:text-yellow-300 transition">Admin</Link>}
 
                     {/* BOTON */}
                     {logged ? (
@@ -51,8 +52,53 @@ function NavBar() {
                         <Link to="/login" className="border border-red-600 px-4 py-2 text-sm hover:bg-red-600 transition">Iniciar Sesión</Link>
                     )}
                 </nav>
+
+                {/* BOTON HAMBURGUESA */}
+                <button onClick={() => setOpen(!open)} className="md:hidden text-white focus:outline-none">
+                    <div className="space-y-1">
+                        <span className={`block h-0.5 w-6 bg-white transition ${open && "rotate-45 translate-y-1.5"}`} />
+                        <span className={`block h-0.5 w-6 bg-white transition ${open && "opacity-0"}`} />
+                        <span className={`block h-0.5 w-6 bg-white transition ${open && "-rotate-45 -translate-y-1.5"}`} />
+                    </div>
+                </button>
+
+                {/* MENU MOVIL */}
+                {open && (
+                    <div className="fixed inset-0 z-40 bg-black/80 backdrop-blur flex flex-col items-center justify-center gap-8 text-xl">
+                        <MovileLink to="/" label="Inicio" close={setOpen} />
+                        <MovileLink to="/historia" label="Historia" close={setOpen} />
+                        <MovileLink to="/equipo" label="Equipo" close={setOpen} />
+                        <MovileLink to="/partidos" label="Partidos" close={setOpen} />
+                        <MovileLink to="/tienda" label="Tienda" close={setOpen} />
+                        <MovileLink to="/contacto" label="Contacto" close={setOpen} />
+
+                        {user?.rol === "admin" && (
+                            <MovileLink to="/admin" label="Admin" close={setOpen} />
+                        )}
+
+                        {logged ? (
+                            <button onClick={handleLogout} className="border border-red-500 px-6 py-2 text-red-500 hover:bg-red-500 hover:text-white transition">Cerrar Sesión</button>
+                        ) : (
+                            <MovileLink to="/login" label="Iniciar Sesión" close={setOpen} />
+                        )}
+                    </div>
+                )}
             </div>
         </header>
+    );
+}
+
+function MovileLink({ to, label, close }) {
+    return (
+        <NavLink to={to} onClick={() => close(false)} className={({ isActive }) => `font-semibold transition ${isActive ? "text-red-500" : "text-white hover:text-red-400"}`}>
+            {label}
+        </NavLink>
+    );
+}
+
+function DesktopLink({ to, label }) {
+    return (
+        <NavLink to={to} className={({ isActive }) => isActive ? "text-red-500" : "hover:text-red-500 transition"}>{label}</NavLink>
     );
 }
 
