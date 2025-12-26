@@ -5,7 +5,9 @@ import "./index.css";
 import App from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-    <HelmetProvider>
-        <App />
-    </HelmetProvider>
+    <React.StrictMode>
+        <HelmetProvider>
+            <App />
+        </HelmetProvider>
+    </React.StrictMode>
 );
