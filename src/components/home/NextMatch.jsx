@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { apiGet } from "../../services/api";
+import { Link } from "react-router-dom";
 import SectionTitle from "./SectionTitle";
 import MatchCard from "../matches/MatchCard";
 
@@ -44,6 +45,7 @@ function NextMatch() {
                     <Link to="/partidos" className="px-8 py-3 border border-red-500 text-red-500 rounded-full hover:bg-red-500 hover:text-white font-semibold transition">Ver calendario completo</Link>
                 </div>
             </div>
+            <div className="h-px w-full bg-gradient-to-r from-transparent via-red-600/30 to-transparent my-20"></div>
 
         </section>
     );

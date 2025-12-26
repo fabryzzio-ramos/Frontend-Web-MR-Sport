@@ -22,7 +22,7 @@ function StorePreview() {
     const preview = productos.splice(0, 4);
 
     return (
-        <section className="bg-gradient-to-b from-[#020617] via-black to-white py-24">
+        <section className="bg-gradient-to-b from-[#020617] via-black to-[#020617] py-24">
             <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
                 {/* TEXTO */}
                 <div>
@@ -43,7 +43,10 @@ function StorePreview() {
                         ))}
                     </div>
                 )}
+
             </div>
+            <div className="h-px w-full bg-gradient-to-r from-transparent via-red-600/30 to-transparent my-20"></div>
+
         </section>
     );
 }

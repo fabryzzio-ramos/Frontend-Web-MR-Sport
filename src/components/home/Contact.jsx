@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Contact() {
     return (
-        <section className="relative py-24 px-6 bg-gradient-to-t from-black via-[#0b0b0b] to-red-700/90 overflow-hidden">
+        <section className="relative py-24 px-6 bg-gradient-to-t from-black via-[#020617] to-[#020617] overflow-hidden">
             {/* DECORACION */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_right.rgba(220,38,38,0.25),transparent_60%)]"></div>
 

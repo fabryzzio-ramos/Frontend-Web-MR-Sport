@@ -39,6 +39,8 @@ function AboutClub() {
                     Cada partido es una historia que defendemos juntos, dentro y fuera de la cancha.</p>
                 </div>
             </div>
+            <div className="h-px w-full bg-gradient-to-r from-transparent via-red-600/30 to-transparent my-20"></div>
+
         </section>
     );
 }
