@@ -19,8 +19,10 @@ function StorePreview() {
         cargarProductos();
     }, []);
 
+    const preview = productos.splice(0, 4);
+
     return (
-        <section className="bg-gradient-to-b from-[#020617] via-black to-red-700/90 py-24">
+        <section className="bg-gradient-to-b from-[#020617] via-black to-black py-24">
             <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
                 {/* TEXTO */}
                 <div>
@@ -32,12 +34,15 @@ function StorePreview() {
                     <Link to="/tienda" className="inline-block bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-full font-semibold transition">Ir a la tienda </Link>
                 </div>
 
-                {/* PRODUCTOS */}
-                <div className="grid grid-cols-2 gap-6">
-                    {productos.map((producto) => (
-                        <StoreCard key={producto._id} producto={producto} />
-                    ))}
-                </div>
+                {preview.length === 0 ? (
+                    <p className="text-center text-gray-400">Aún no hay productos</p>
+                ) : (
+                    <div className="grid grid-cols-2 gap-6">
+                        {productos.map((producto) => (
+                            <StoreCard key={producto._id} producto={producto} />
+                        ))}
+                    </div>
+                )}
             </div>
         </section>
     );
