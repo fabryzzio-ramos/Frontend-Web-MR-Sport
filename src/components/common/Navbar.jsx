@@ -54,7 +54,7 @@ function NavBar() {
                 </nav>
 
                 {/* BOTON HAMBURGUESA */}
-                <button onClick={() => setOpen(!open)} className="md:hidden text-white focus:outline-none">
+                <button onClick={() => setOpen(!open)} aria-label="Abrir menú" aria-expanded={open} className="md:hidden text-white focus:outline-none">
                     <div className="space-y-1">
                         <span className={`block h-0.5 w-6 bg-white transition ${open && "rotate-45 translate-y-1.5"}`} />
                         <span className={`block h-0.5 w-6 bg-white transition ${open && "opacity-0"}`} />
@@ -64,7 +64,7 @@ function NavBar() {
 
                 {/* MENU MOVIL */}
                 {open && (
-                    <div className="fixed inset-0 z-40 bg-black/80 backdrop-blur flex flex-col items-center justify-center gap-8 text-xl">
+                    <div className="fixed inset-0 z-40 bg-black/80 backdrop-blur flex flex-col items-center justify-center gap-8 text-xl" role="dialog" aria-modal="true" >
                         <MovileLink to="/" label="Inicio" close={setOpen} />
                         <MovileLink to="/historia" label="Historia" close={setOpen} />
                         <MovileLink to="/equipo" label="Equipo" close={setOpen} />
@@ -90,7 +90,7 @@ function NavBar() {
 
 function MovileLink({ to, label, close }) {
     return (
-        <NavLink to={to} onClick={() => close(false)} className={({ isActive }) => `font-semibold transition ${isActive ? "text-red-500" : "text-white hover:text-red-400"}`}>
+        <NavLink to={to} onClick={() => close(false)} className={({ isActive }) => `relative font-semibold transition ${isActive ? "text-red-500 after:w-full" : "text-gray-300 hover:text-white"} after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:bg-red-500 after:-w-0 after:transition-all`}>
             {label}
         </NavLink>
     );

@@ -7,11 +7,13 @@ function Register() {
     const [correo, setCorreo] = useState("");
     const [contraseña, setContraseña] = useState("");
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
+        setLoading(true);
 
         try {
             await apiPost("/auth/register", {
@@ -23,6 +25,8 @@ function Register() {
             navigate("/login");
         } catch (error) {
             setError(error.message);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -38,12 +42,17 @@ function Register() {
 
                 {/* FORM */}
                 <form onSubmit={handleSubmit} className="space-y-6">
-                    <input type="text" placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} className="w-full bg-transparent border-b border-gray-700 py-3 text-white focus:outline-none focus:border-red-600 placeholder-gray-500" />
-                    <input type="email" placeholder="Correo" value={correo} onChange={(e) => setCorreo(e.target.value)} className="w-full bg-transparent border-b border-gray-700 py-3 text-white focus:outline-none focus:border-red-600 placeholder-gray-500" />
-                    <input type="password" placeholder="Contraseña" value={contraseña} onChange={(e) => setContraseña(e.target.value)} className="w-full bg-transparent border-b border-gray-700 py-3 text-white focus:outline-none focus:border-red-600 placeholder-gray-500" />
+                    <label className="sr-only" htmlFor="nombre">Nombre de usuario</label>
+                    <input id="nombre" type="text" aria-required="true" placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} className="w-full bg-transparent border-b border-gray-700 py-3 text-white focus:outline-none focus:border-red-600 placeholder-gray-500" />
+
+                    <label className="sr-only" htmlFor="correo">Correo electronico</label>
+                    <input id="correo" type="email" aria-required="true" placeholder="Correo" value={correo} onChange={(e) => setCorreo(e.target.value)} className="w-full bg-transparent border-b border-gray-700 py-3 text-white focus:outline-none focus:border-red-600 placeholder-gray-500" />
+
+                    <label className="sr-only" htmlFor="contraseña">Contraseña</label>
+                    <input id="contraseña" type="password" aria-required="true" placeholder="Contraseña" value={contraseña} onChange={(e) => setContraseña(e.target.value)} className="w-full bg-transparent border-b border-gray-700 py-3 text-white focus:outline-none focus:border-red-600 placeholder-gray-500" />
                     {error && <p>{error}</p>}
 
-                    <button type="submit" className="w-full mt-8 bg-red-600 text-white py-3 rounded-full font-semibold hover:bg-red-700 transition">Registrarse</button>
+                    <button disabled={loading} type="submit" className={`w-full mt-8 bg-red-600 text-white py-3 rounded-full transition ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-red-700"}`}>{loading ? "Cargando..." : "Registrarse" }</button>
                 </form>
 
                 {/* FOOTER */}

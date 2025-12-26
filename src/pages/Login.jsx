@@ -6,11 +6,13 @@ function Login() {
     const [correo, setCorreo] = useState("");
     const [contraseña, setContraseña] = useState("");
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     async function handleSubmit(e) {
         e.preventDefault();
         setError("");
+        setLoading(true);
 
         try {
             const data = await apiPost("/auth/login", {
@@ -22,6 +24,8 @@ function Login() {
             navigate("/");
         } catch (error) {
             setError(error.message);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -37,11 +41,14 @@ function Login() {
 
                 {/* FORM */}
                 <form onSubmit={handleSubmit} className="space-y-6">
-                    <input type="email" placeholder="Correo" value={correo} onChange={(e) => setCorreo(e.target.value)} className="w-full bg-transparent border-b border-gray-700 py-3 text-white focus:outline-none focus:border-red-600 placeholder-gray-500" />
-                    <input type="password" placeholder="Contraseña" value={contraseña} onChange={(e) => setContraseña(e.target.value)} className="w-full bg-transparent border-b border-gray-700 py-3 text-white focus:outline-none focus:border-red-600 placeholder-gray-500" />
+                    <label className="sr-only" htmlFor="correo">Correo electronico</label>
+                    <input id="correo" type="email" aria-required="true" placeholder="Correo" value={correo} onChange={(e) => setCorreo(e.target.value)} className="w-full bg-transparent border-b border-gray-700 py-3 text-white focus:outline-none focus:border-red-600 placeholder-gray-500" />
+
+                    <label className="sr-only" htmlFor="contrasela">Contraseña</label>
+                    <input id="contraseña" type="password" aria-required="true" placeholder="Contraseña" value={contraseña} onChange={(e) => setContraseña(e.target.value)} className="w-full bg-transparent border-b border-gray-700 py-3 text-white focus:outline-none focus:border-red-600 placeholder-gray-500" />
                     {error && <p>{error}</p>}
 
-                    <button type="submit" className="w-full mt-8 bg-red-600 text-white py-3 rounded-full font-semibold hover:bg-red-700 transition">Iniciar sesión</button>
+                    <button disabled={loading} type="submit" className={`w-full mt-8 bg-red-600 text-white py-3 rounded-full transition ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-red-700"} font-semibold hover:bg-red-700 transition`}>{loading ? "Cargando..." : "Iniciar sesión"}</button>
                 </form>
 
                 {/* FOOTER */}
