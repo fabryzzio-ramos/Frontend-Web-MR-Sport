@@ -6,7 +6,7 @@ export default function useSEO({ title, description }) {
         document.title = title;
 
         // DESCRIPTION
-        let meta = document.querySelector("meta[name=`description`]");
+        let meta = document.querySelector("meta[name=\"description\"]");  // Cambié ` por "
         if (!meta) {
             meta = document.createElement("meta");
             meta.setAttribute("name", "description");

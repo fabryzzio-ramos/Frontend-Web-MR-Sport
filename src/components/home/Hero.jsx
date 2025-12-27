@@ -8,7 +8,7 @@ function Hero() {
         <section ref={ref} className={`relative h-[90vh] flex items-center justify-center transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"} bg-gradient-to-b from-black via-neutral-900 to-black`}>
 
             {/* FONDO */}
-            <img src="http://logo.png" className="absolute inset-0 w-full h-full object-cover opacity-30 bg-black/40" loading="lazy" />
+            <img src="https://ejemplo.com/logo.png" className="absolute inset-0 w-full h-full object-cover opacity-30 bg-black/40" loading="lazy" />
 
             {/* CONTENIDO */}
             <div className="relative z-10 max-w-7xl mx-auto px-6">
