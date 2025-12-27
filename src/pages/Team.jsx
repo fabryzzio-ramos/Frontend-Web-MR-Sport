@@ -2,7 +2,14 @@ import { useEffect, useState } from "react";
 import { apiGet } from "../services/api";
 import PositionSection from "../components/team/PositionSection";
 
+import useSEO from "../hooks/useSEO";
+
 function Team() {
+    useSEO({
+        title: "Equipo oficial | Club Deportivo Oficial",
+        description: "Conoce a los jugadores y cuerpo técnico de MR Sport."
+    });
+
     const [jugadores, setJugadores] = useState([]);
 
     useEffect(() => {
