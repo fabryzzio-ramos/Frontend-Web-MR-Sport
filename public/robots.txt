@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap:
+https://web-mr-sport.vercel.app/sitemap.xml
