@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { apiPost } from "../services/api";
+import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 
 function Login() {
@@ -7,6 +8,8 @@ function Login() {
     const [contraseña, setContraseña] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+
+    const { login } = useAuth;
     const navigate = useNavigate();
 
     async function handleSubmit(e) {
@@ -15,12 +18,7 @@ function Login() {
         setLoading(true);
 
         try {
-            const data = await apiPost("/auth/login", {
-                correo,
-                contraseña
-            });
-            localStorage.setItem("token", data.token);
-            localStorage.setItem("usuario", JSON.stringify(data.usuario));
+            await login(correo, contraseña);
             navigate("/");
         } catch (error) {
             setError(error.message);

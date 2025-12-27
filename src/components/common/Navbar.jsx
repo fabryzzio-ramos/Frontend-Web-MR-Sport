@@ -1,6 +1,6 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { isAuthenticated, logout } from "../../utils/auth";
 import { useEffect, useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 
 function NavBar() {
     const [scrolled, setScrolled] = useState(false);
@@ -16,8 +16,7 @@ function NavBar() {
     }, []);
 
     const navigate = useNavigate();
-    const logged = isAuthenticated();
-    const user = localStorage.getItem("usuario") ? JSON.parse(localStorage.getItem("usuario")) : null
+    const { user, isAuthenticated, logout } = useAuth();
     
     function handleLogout() {
         logout();
@@ -46,7 +45,7 @@ function NavBar() {
                     {user?.rol === "admin" && <Link to="/admin" className="text-yellow-400 hover:text-yellow-300 transition">Admin</Link>}
 
                     {/* BOTON */}
-                    {logged ? (
+                    {isAuthenticated ? (
                         <button onClick={handleLogout} className="border border-red-600 px-4 py-2 text-sm hover:bg-red-600 transition">Cerrar Sesión</button>
                     ) : (
                         <Link to="/login" className="border border-red-600 px-4 py-2 text-sm hover:bg-red-600 transition">Iniciar Sesión</Link>
@@ -76,7 +75,7 @@ function NavBar() {
                             <MovileLink to="/admin" label="Admin" close={setOpen} />
                         )}
 
-                        {logged ? (
+                        {isAuthenticated ? (
                             <button onClick={handleLogout} className="border border-red-500 px-6 py-2 text-red-500 hover:bg-red-500 hover:text-white transition">Cerrar Sesión</button>
                         ) : (
                             <MovileLink to="/login" label="Iniciar Sesión" close={setOpen} />
@@ -90,7 +89,7 @@ function NavBar() {
 
 function MovileLink({ to, label, close }) {
     return (
-        <NavLink to={to} onClick={() => close(false)} className={({ isActive }) => `relative font-semibold transition ${isActive ? "text-red-500 after:w-full" : "text-gray-300 hover:text-white"} after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:bg-red-500 after:-w-0 after:transition-all`}>
+        <NavLink to={to} onClick={() => close(false)} className={({ isActive }) => `relative font-semibold transition ${isActive ? "text-red-500 after:w-full" : "text-gray-300 hover:text-white"} after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:bg-red-500 after:w-0 after:transition-all`}>
             {label}
         </NavLink>
     );
