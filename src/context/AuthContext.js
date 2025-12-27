@@ -5,23 +5,21 @@ const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
-    const [token, setToken] = useState(null);
     const [loading, setLoading] = useState(true);
 
     // OBTNER USUARIO ACTUAL
     useEffect(() => {
-        const verificarSesion = async () => {
+        async function loadUser() {
             try {
                 const data = await apiGet("/auth/me");
                 setUser(data.usuario);
             } catch (error) {
                 setUser(null);
-                setToken(null)
             } finally {
                 setLoading(false);
             }
         };
-        verificarSesion();
+        loadUser();
     }, []);
 
     async function login(correo, contraseña) {
@@ -42,7 +40,6 @@ export function AuthProvider({ children }) {
     return (
         <AuthContext.Provider value={{
             user,
-            token,
             loading,
             login,
             logout,
