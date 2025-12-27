@@ -1,12 +1,9 @@
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const apiGet = async (endpoint) => {
-    const token = localStorage.getItem("token");
-    
+
     const res = await fetch(API_URL + endpoint, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
+        credentials: "include"
     });
 
     if (!res.ok) throw new Error("Error en la API");
@@ -14,19 +11,15 @@ export const apiGet = async (endpoint) => {
     return await res.json();
 };
 
-export async function apiPost(endpoint, data, auth = false) {
+export async function apiPost(endpoint, data,) {
     const headers = {
         "Content-Type": "application/json"
     };
 
-    if (auth) {
-        const token = localStorage.getItem("token");
-        headers.Authorization = `Bearer ${token}`;
-    }
-
     const res = await fetch(API_URL + endpoint, {
         method: "POST",
         headers,
+        credentials: "include",
         body: JSON.stringify(data)
     });
 
@@ -36,17 +29,13 @@ export async function apiPost(endpoint, data, auth = false) {
     return result;
 }
 
-export async function apiDelete(endpoint, auth = false) {
+export async function apiDelete(endpoint) {
     const headers = {};
-
-    if (auth) {
-        const token = localStorage.getItem("token");
-        headers.Authorization = `Bearer ${token}`;
-    }
 
     const res = await fetch(API_URL + endpoint, {
         method: "DELETE",
         headers,
+        credentials: "include"
     });
 
     if (!res.ok) throw new Error("Error al eliminar");

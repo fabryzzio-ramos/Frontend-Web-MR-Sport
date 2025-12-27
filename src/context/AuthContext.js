@@ -30,12 +30,11 @@ export function AuthProvider({ children }) {
         });
         
         setUser(data.usuario);
-        setToken(data.token);
     };
 
-    function logout() {
+    async function logout() {
+        await apiPost("/auth/logout");
         setUser(null);
-        setToken(null);
     }
 
     const isAuthenticated = !!user;
