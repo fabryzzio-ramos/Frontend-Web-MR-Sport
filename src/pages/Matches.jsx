@@ -2,8 +2,13 @@ import { useEffect, useState } from "react";
 import { apiGet } from "../services/api";
 import MonthFilter from "../components/matches/MonthFilter";
 import MatchesTable from "../components/matches/MatchesTable";
+import useSEO from "../hooks/useSEO";
 
 function Matches() {
+    useSEO({
+        title: "Calendario Oficial | Club Deportivo Oficial",
+        description: "Calendario oficial de MR Sport temporada 2025."
+    });
     const [partidos, setPartidos] = useState([]);
     const [mesActual, setMesActual] = useState(new Date().getMonth());
 
