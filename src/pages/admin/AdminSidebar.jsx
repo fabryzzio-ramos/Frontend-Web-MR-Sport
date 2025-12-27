@@ -1,11 +1,12 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { logout } from "../../utils/auth";
+import { useAuth } from "../../context/AuthContext";
 
 function AdminSidebar() {
     const navigate = useNavigate();
+    const { logout } = useAuth();
 
-    function handleLogout() {
-        logout();
+    async function handleLogout() {
+        await logout();
         navigate("/login")
     }
 
