@@ -4,6 +4,8 @@ import NavBar from "./components/common/Navbar";
 import Footer from "./components/common/Footer";
 import PrivateRoute from "./routes/PrivateRoute";
 import AdminRoute from "./routes/AdminRoute";
+import { useAuth } from "./context/AuthContext";
+import FullLoader from "./components/ui/FullLoader";
 
 const Home = lazy(() => import("./pages/Home"));
 const Matches = lazy(() => import("./pages/Matches"));
@@ -21,6 +23,9 @@ const AdminPartidos = lazy(() => import("./pages/admin/AdminPartidos"));
 const AdminStore = lazy(() => import("./pages/admin/AdminStore"));
 
 function App() {
+    const { loading } = useAuth();
+
+    if (loading) return <FullLoader />;
     return (
         <BrowserRouter>
             <AppLayout />   
