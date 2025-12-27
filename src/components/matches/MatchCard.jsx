@@ -1,4 +1,4 @@
-import { memo } from "react";
+import React from "react";
 
 function MatchCard({ partido }) {
     if (!partido) return null;
@@ -14,7 +14,7 @@ function MatchCard({ partido }) {
                 {/* EQUIPO LOCAL */}
                 <div className="flex flex-col items-center gap-2">
                     {partido.logo?.local ? (
-                        <img src={partido.logo.local} alt={partido.local} className="w-16 h-16 object-contain" loading="lazy" />
+                        <img src={partido.logo.local} alt={partido.local} className="w-16 h-16 object-contain" loading="lazy" decoding="async" />
                     ) : (
                         <div className="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center text-white text-xs">Logo</div>
                     )}
@@ -27,7 +27,7 @@ function MatchCard({ partido }) {
                 {/* EQUIPO VISITANTE */}
                 <div className="flex flex-col items-center gap-2">
                     {partido.logo?.rival ? (
-                        <img src={partido.logo.rival} alt={partido.rival} className="w-16 h-16 object-contain" />
+                        <img src={partido.logo.rival} alt={partido.rival} className="w-16 h-16 object-contain" loading="lazy" decoding="async" />
                     ) : (
                         <div className="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center text-white text-xs">Logo</div>
                     )}
@@ -44,4 +44,4 @@ function MatchCard({ partido }) {
     );
 }
 
-export default memo(MatchCard);
+export default React.memo(MatchCard);
