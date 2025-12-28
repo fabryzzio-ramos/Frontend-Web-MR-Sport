@@ -4,7 +4,12 @@ import { useAuth } from "../context/AuthContext";
 function AdminRoute({ children }) {
     const { user, loading } = useAuth();
 
-    if (loading) return null;
+    if (loading) { 
+        return (
+            <div className="min-h-screen flex items-center justify-center text.white">Cargando...</div>
+        );
+    }
+    
     if (!user || user.rol !== "admin") return <Navigate to="/" replace />;
 
     return children;

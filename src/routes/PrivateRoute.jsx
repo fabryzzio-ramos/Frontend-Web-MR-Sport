@@ -4,7 +4,12 @@ import { useAuth } from "../context/AuthContext";
 function PrivateRoute({ children }) {
     const { isAuthenticated, loading } = useAuth();
 
-    if (loading) return null;
+    if (loading) { 
+        return (
+            <div className="min-h-screen flex items-center justify-center text.white">Cargando...</div>
+        );
+    }
+    
     if (!isAuthenticated) {
         return <Navigate to="/login" replace />
     }
