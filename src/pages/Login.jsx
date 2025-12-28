@@ -18,11 +18,7 @@ function Login() {
 
         try {
             await login(correo, contraseña);
-<<<<<<< HEAD
             navigate("/");
-=======
-           
->>>>>>> 0ff43ba206c6bf929d6274b531a084fc1801a1e2
         } catch (error) {
             setError(error.message);
         } finally {
