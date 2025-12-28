@@ -9,28 +9,25 @@ export function AuthProvider({ children }) {
 
     // OBTNER USUARIO ACTUAL
     useEffect(() => {
-        async function loadUser() {
-            try {
-                const data = await apiGet("/auth/me");
-                setUser({
-                    id: data.usuario.id,
-                    nombre: data.usuario.nombre,
-                    correo: data.usuario.correo,
-                    rol: data.usuario.rol
-                });
-            } catch (error) {
-                setUser(null);
-            } finally {
-                setLoading(false);
-            }
-        };
-        loadUser();
+        checkAuth();
     }, []);
 
-    async function login(correo, contraseña) {
-        await apiPost("/auth/login", {correo, contraseña});
+    async function checkAuth() {
+        try {
+            const res = await apiGet("/auth/me");
+            setUser(res.usuario);
+        } catch (error) {
+            setUser(null);
+        } finally {
+            setLoading(false);
+        }
+    }
 
-        const data = await apiGet("/auth/me");
+    async function login(correo, contraseña) {
+        const data = await apiPost("/auth/login", {
+            correo, contraseña
+        });
+        
         setUser(data.usuario);
     };
 
@@ -39,15 +36,13 @@ export function AuthProvider({ children }) {
         setUser(null);
     }
 
-    const isAuthenticated = !!user && !loading;
-
     return (
         <AuthContext.Provider value={{
             user,
             loading,
             login,
             logout,
-            isAuthenticated,
+            isAuthenticated: !!user,
         }}>
             {children}
         </AuthContext.Provider>
