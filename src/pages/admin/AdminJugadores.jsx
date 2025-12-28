@@ -90,7 +90,7 @@ function AdminJugadores() {
                 {error && <p className="text-red-500 mb-4">{error}</p>}
 
                 {/* FORM */}
-                <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-4 gap-4 bg-gray-800 p-6 rounded-xl">
+                <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-800 p-6 rounded-xl">
                     <input type="text" placeholder="Nombre" value={form.nombre} onChange={(e) => setForm({...form, nombre: e.target.value})} className="bg-slate-900 p-3 rounded" required />
                     <input type="number" placeholder="Número" value={form.numero} onChange={(e) => setForm({...form, numero: e.target.value})} className="bg-slate-900 p-3 rounded" required />
                     <select value={form.posicion} onChange={(e) => setForm({...form, posicion: e.target.value})} className="bg-slate-900 p-3 rounded">
