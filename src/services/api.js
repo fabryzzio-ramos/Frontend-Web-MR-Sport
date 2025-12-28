@@ -11,17 +11,20 @@ export const apiGet = async (endpoint) => {
     return await res.json();
 };
 
-export async function apiPost(endpoint, data,) {
-    const headers = {
-        "Content-Type": "application/json"
+export async function apiPost(endpoint, data, isFormData = false, method = "POST") {
+    const options = {
+        method,
+        credentials: "include"
     };
 
-    const res = await fetch(API_URL + endpoint, {
-        method: "POST",
-        headers,
-        credentials: "include",
-        body: JSON.stringify(data)
-    });
+    if (isFormData) {
+        options.body = data;
+    } else {
+        options.headers = { "Content-Type": "application/json" };
+        options.body = JSON.stringify(data);
+    }
+
+    const res = await fetch(API_URL + endpoint, options);
 
     const result = await res.json();
 
@@ -30,11 +33,9 @@ export async function apiPost(endpoint, data,) {
 }
 
 export async function apiDelete(endpoint) {
-    const headers = {};
 
     const res = await fetch(API_URL + endpoint, {
         method: "DELETE",
-        headers,
         credentials: "include"
     });
 

@@ -4,10 +4,10 @@ import { apiGet, apiPost, apiDelete } from "../../services/api";
 function AdminJugadores() {
     const [jugadores, setJugadores] = useState([]);
     const [form, setForm] = useState({
-        nombre: "", numero: "", posicion: "", foto: ""
+        nombre: "", numero: "", posicion: ""
     });
-
-    const token = localStorage.getItem("token");
+    const [foto, setFoto] = useState(null);
+    const [editando, setEditando] = useState(null);
 
     async function cargarJugadores() {
         try {
@@ -25,20 +25,46 @@ function AdminJugadores() {
     async function handleSubmit(e) {
         e.preventDefault();
 
+        const formData = new FormData();
+        formData.append("nombre", form.nombre);
+        formData.append("numero", form.nombre),
+        formData.append("posicion", form.posicion);
+        if (foto) formData.append("foto", foto);
+
         try {
-            await apiPost("/jugadores", form, true);
-            setForm({ nombre: "", numero: "", posicion: "", foto:"" });
+            if (editando) {
+                await apiPost(`/jugadores/${editando}`, formData, true, "PUT");
+            } else {
+                await apiPost("/jugadores",formData, true)
+            }
+
+            resetForm();
             cargarJugadores();
         } catch (error) {
             console.error(error);
         }
     }
 
+    function resetForm() {
+        setForm({ nombre: "", numero: "", posicion: "" });
+        setForm(null);
+        setEditando(null);
+    }
+
+    function editarJugador(jugador) {
+        setEditando(jugador._id);
+        setForm({
+            nombre: jugador.nombre,
+            numero: jugador.numero,
+            posicion: jugador.posicion
+        });
+    }
+
     async function handleDelete(id) {
         if (!confirm("¿Eliminar jugador?")) return;
 
         try {
-            await apiDelete(`/jugadores/${id}`, true);
+            await apiDelete(`/jugadores/${id}`);
             cargarJugadores();
         } catch (error) {
             console.error(error);
@@ -61,21 +87,31 @@ function AdminJugadores() {
                         <option>Mediocampista</option>
                         <option>Delantero</option>
                     </select>
-                    <input type="text" placeholder="URL Foto" value={form.foto} onChange={(e) => setForm({...form, foto: e.target.value})} className="bg-black border border-gray-700 px-4 py-2 rounded" required />
+                    <input type="file" accept="image/*" placeholder="URL Foto" onChange={(e) => setFoto(e.target.files[0])} className="bg-black border border-gray-700 px-4 py-2 rounded" required />
 
-                    <button className="md:col-span-5 bg-red-600 hover:bg-red-700 transition py-3 rounded font-semibold">Agregar Jugador</button>
+                    <button className="md:col-span-5 bg-red-600 hover:bg-red-700 transition py-3 rounded font-semibold">
+                        {editando ? "Actualizar Jugador" : "Agregar Jugador"}
+                    </button>
+
+                    {editando && (
+                        <button type="button" onClick={resetForm} className="md:col-span-5 text-gray-400 text-sm hover:text-white">Cancelar</button>
+                    )}
                 </form>
 
                 {/* LISTA */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {jugadores.map((jugador) => (
                         <div key={jugador._id} className="bg-black border border-gray-800 rounded-xl p-5 flex gap-4 items-center">
-                            <img src={jugador.foto || "https://via.placeholder.com/80"} alt={jugador.nombre} className="w-20 h-20 rounded-full object-cover border" />
+                            <img src={jugador.foto?.url || "https://via.placeholder.com/80"} alt={jugador.nombre} className="w-20 h-20 rounded-full object-cover border" />
                             <div className="flex-1">
                                 <h3 className="font-bold text-lg">#{jugador.numero} {jugador.nombre}</h3>
                                 <p className="text-gray-400 text-sm">{jugador.posicion}</p>
                             </div>
 
+                            <div className="flex flex-col gap-2">
+                                <button onClick={() => editarJugador(jugador)} className="text-yellow-400 text-sm hover:text-yellow-300">Editar</button>
+                            </div>
+                            
                             <button onClick={() => handleDelete(jugador._id)} className="text-red-500 hover:text-red-700 text-sm">Eliminar</button>
                         </div>
                     ))}
