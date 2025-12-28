@@ -7,29 +7,30 @@ export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    // OBTNER USUARIO ACTUAL
-    useEffect(() => {
-        checkAuth();
-    }, []);
-
+    // 🔑 FUNCIÓN ÚNICA DE VERIFICACIÓN
     async function checkAuth() {
         try {
             const res = await apiGet("/auth/me");
             setUser(res.usuario);
-        } catch (error) {
+        } catch {
             setUser(null);
         } finally {
             setLoading(false);
         }
     }
 
+    // 🔥 SOLO AQUÍ se ejecuta al cargar la app
+    useEffect(() => {
+        checkAuth();
+    }, []);
+
     async function login(correo, contraseña) {
-        const data = await apiPost("/auth/login", {
-            correo, contraseña
-        });
-        
-        setUser(data.usuario);
-    };
+        setLoading(true);
+        await apiPost("/auth/login", { correo, contraseña });
+
+        // ⏳ ESPERA a que la cookie exista
+        await checkAuth();
+    }
 
     async function logout() {
         await apiPost("/auth/logout");
@@ -47,7 +48,7 @@ export function AuthProvider({ children }) {
             {children}
         </AuthContext.Provider>
     );
-}  
+}
 
 export function useAuth() {
     return useContext(AuthContext);
