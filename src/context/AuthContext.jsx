@@ -25,11 +25,9 @@ export function AuthProvider({ children }) {
     }, []);
 
     async function login(correo, contraseña) {
-        setLoading(true);
-        await apiPost("/auth/login", { correo, contraseña });
+        const data = await apiPost("/auth/login", { correo, contraseña });
 
-        // ⏳ ESPERA a que la cookie exista
-        await checkAuth();
+        setUser(data.usuario)
     }
 
     async function logout() {
