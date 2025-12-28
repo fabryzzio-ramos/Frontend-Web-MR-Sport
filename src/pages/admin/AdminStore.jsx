@@ -40,7 +40,7 @@ function AdminStore() {
         formData.append("nombre", form.nombre);
         formData.append("precio", form.precio);
         formData.append("descripcion", form.descripcion);
-        if (form.imagen) {
+        if (imagen) {
             formData.append("imagen", imagen);
         }
         
@@ -100,7 +100,7 @@ function AdminStore() {
                 <input placeholder="Nombre" value={form.nombre} onChange={e => setForm({...form, nombre: e.target.value})} className="bg-slate-900 p-3 rounded" />
                 <input placeholder="Precio" type="number" value={form.precio} onChange={e => setForm({...form, precio: e.target.value})} className="bg-slate-900 p-3 rounded" />
                 <input placeholder="Descripcion" value={form.descripcion} onChange={e => setForm({...form, descripcion: e.target.value})} className="bg-slate-900 p-3 rounded" />
-                <input type="file" accept="image/*" placeholder="Imagen" onChange={e => setImagen(e.target.files[0])} className="bg-slate-900 p-3 rounded" />
+                <input ref={fileInputRef} type="file" accept="image/*" placeholder="Imagen" onChange={e => setImagen(e.target.files[0])} className="bg-slate-900 p-3 rounded" />
 
                 <button className="md:col-span-5 bg-red-600 hover:bg-red-700 transition py-3 rounded font-semibold">
                     {editando ? "Actualizar Producto" : "Agregar Producto"}
