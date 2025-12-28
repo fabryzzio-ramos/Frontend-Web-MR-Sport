@@ -28,10 +28,9 @@ export function AuthProvider({ children }) {
     }, []);
 
     async function login(correo, contraseña) {
-        const data = await apiPost("/auth/login", {
-            correo, contraseña
-        });
-        
+        await apiPost("/auth/login", {correo, contraseña});
+
+        const data = await apiGet("/auth/me");
         setUser(data.usuario);
     };
 
@@ -40,7 +39,7 @@ export function AuthProvider({ children }) {
         setUser(null);
     }
 
-    const isAuthenticated = !!user;
+    const isAuthenticated = !!user && !loading;
 
     return (
         <AuthContext.Provider value={{
