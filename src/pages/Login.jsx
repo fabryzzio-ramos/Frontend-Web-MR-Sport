@@ -23,7 +23,7 @@ function Login() {
         try {
             await login(correo, contraseña);
             
-            window.location.href = "/"
+            navigate("/")
         } catch (error) {
             setError(error.message);
         } finally {
