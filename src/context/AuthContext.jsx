@@ -24,10 +24,10 @@ export function AuthProvider({ children }) {
     }
 
     async function login(correo, contraseña) {
-        await apiPost("/auth/login", {
+        const data = await apiPost("/auth/login", {
             correo, contraseña
         });
-        
+        setUser(data.usuario)
         await loadUser();
     };
 
