@@ -7,7 +7,7 @@ export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    // 🔹 VERIFICAR SESIÓN (COOKIE)
+    // 🔑 FUNCIÓN ÚNICA DE VERIFICACIÓN
     async function checkAuth() {
         try {
             const res = await apiGet("/auth/me");
@@ -19,17 +19,19 @@ export function AuthProvider({ children }) {
         }
     }
 
+    // 🔥 SOLO AQUÍ se ejecuta al cargar la app
     useEffect(() => {
         checkAuth();
     }, []);
 
-    // 🔹 LOGIN
     async function login(correo, contraseña) {
+        setLoading(true);
         await apiPost("/auth/login", { correo, contraseña });
-        await checkAuth(); // 🔥 AQUÍ ESTÁ LA CLAVE
+
+        // ⏳ ESPERA a que la cookie exista
+        await checkAuth();
     }
 
-    // 🔹 LOGOUT
     async function logout() {
         await apiPost("/auth/logout");
         setUser(null);
@@ -41,7 +43,7 @@ export function AuthProvider({ children }) {
             loading,
             login,
             logout,
-            isAuthenticated: !!user
+            isAuthenticated: !!user,
         }}>
             {children}
         </AuthContext.Provider>
