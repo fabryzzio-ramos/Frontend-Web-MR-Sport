@@ -8,12 +8,8 @@ function Login() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const { login, user } = useAuth();
+    const { login } = useAuth();
     const navigate = useNavigate();
-
-    useEffect(() => {
-        if (user) navigate("/");
-    }, [user]);
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -22,8 +18,7 @@ function Login() {
 
         try {
             await login(correo, contraseña);
-            
-            window.location.href = "/"
+            navigate("/");
         } catch (error) {
             setError(error.message);
         } finally {
