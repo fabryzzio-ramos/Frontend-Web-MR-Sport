@@ -116,7 +116,7 @@ function AdminStore() {
                 {productos.map(p => (
                     <div key={p._id} className="bg-slate-900 p-4 rounded flex justify-between">
                         <div>
-                            <img src={p.imagen?.url || "https://via.placeholder.com/80"} alt={p.nombre} className="w-20 h-20 object-cover rounded" />
+                            <img src={p.imagen?.url} alt={p.nombre} className="w-20 h-20 object-cover rounded" />
                             <p className="font-semibold">{p.nombre}</p>
                             <p className="text-gray-400">S/. {p.precio}</p>
                             <p className="text-gray-400">{p.descripcion}</p>

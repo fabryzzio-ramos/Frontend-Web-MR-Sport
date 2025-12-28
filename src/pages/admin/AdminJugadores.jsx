@@ -115,7 +115,7 @@ function AdminJugadores() {
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {jugadores.map((jugador) => (
                         <div key={jugador._id} className="bg-black border border-gray-800 rounded-xl p-5 flex gap-4 items-center">
-                            <img src={jugador.foto?.url || "https://via.placeholder.com/80"} alt={jugador.nombre} className="w-20 h-20 rounded-full object-cover border" />
+                            <img src={jugador.foto?.url} alt={jugador.nombre} className="w-20 h-20 rounded-full object-cover border" />
                             <div className="flex-1">
                                 <h3 className="font-bold text-lg">#{jugador.numero} {jugador.nombre}</h3>
                                 <p className="text-gray-400 text-sm">{jugador.posicion}</p>
