@@ -7,30 +7,29 @@ export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    // OBTNER USUARIO ACTUAL
-    useEffect(() => {
-        checkAuth();
-    }, []);
-
+    // 🔹 VERIFICAR SESIÓN (COOKIE)
     async function checkAuth() {
         try {
             const res = await apiGet("/auth/me");
             setUser(res.usuario);
-        } catch (error) {
+        } catch {
             setUser(null);
         } finally {
             setLoading(false);
         }
     }
 
-    async function login(correo, contraseña) {
-        const data = await apiPost("/auth/login", {
-            correo, contraseña
-        });
-        setUser(data.usuario)
-        await loadUser();
-    };
+    useEffect(() => {
+        checkAuth();
+    }, []);
 
+    // 🔹 LOGIN
+    async function login(correo, contraseña) {
+        await apiPost("/auth/login", { correo, contraseña });
+        await checkAuth(); // 🔥 AQUÍ ESTÁ LA CLAVE
+    }
+
+    // 🔹 LOGOUT
     async function logout() {
         await apiPost("/auth/logout");
         setUser(null);
@@ -42,12 +41,12 @@ export function AuthProvider({ children }) {
             loading,
             login,
             logout,
-            isAuthenticated: !!user,
+            isAuthenticated: !!user
         }}>
             {children}
         </AuthContext.Provider>
     );
-}  
+}
 
 export function useAuth() {
     return useContext(AuthContext);
