@@ -2,13 +2,15 @@ import React from "react";
 
 function PlayerCard({ jugador }) {
     if (!jugador) return null;
+
+    const imageUrl = jugador.foto?.url ? jugador.foto.url.replace("/upload/", "/upload/q_auto,f_auto/") : "/placeholder.png";
     return (
         <div className="relative bg-[#020617] border border-white/10 rounded-3xl overflow-hidden group hover:border-red-500/50 hover:scale-105 transition-all duration-300">
             {/* NUMERO GIGANTE */}
             <span className="absolute top-6 right-6 text-[140px] font-extrabold text-red-600/10 z-0">{jugador.numero}</span>
 
             {/* IMAGEN */}
-            <img src={jugador.foto?.url.replace("/upload/", "/upload/q_auto.f_auto/")} alt={jugador.nombre} className="relative z-10 w-full aspect-[3/4] h-80 object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" decoding="async" />
+            <img src={imageUrl} alt={jugador.nombre} className="relative z-10 w-full aspect-[3/4] h-80 object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" decoding="async" />
             
             {/* OVERLAY */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
