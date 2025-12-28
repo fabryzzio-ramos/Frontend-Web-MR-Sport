@@ -91,16 +91,16 @@ function AdminJugadores() {
 
                 {/* FORM */}
                 <form onSubmit={handleSubmit} className="bg-[#020617] border border-gray-800 rounded-xl p-6 grid md:grid-cols-4 gap:4 mb-14">
-                    <input type="text" placeholder="Nombre" value={form.nombre} onChange={(e) => setForm({...form, nombre: e.target.value})} className="bg-black border border-gray-700 px-4 py-2 rounded" required />
-                    <input type="number" placeholder="Número" value={form.numero} onChange={(e) => setForm({...form, numero: e.target.value})} className="bg-black border border-gray-700 px-4 py-2 rounded" required />
-                    <select value={form.posicion} onChange={(e) => setForm({...form, posicion: e.target.value})} className="bg-black border border-gray-700 px-4 py-2 rounded">
+                    <input type="text" placeholder="Nombre" value={form.nombre} onChange={(e) => setForm({...form, nombre: e.target.value})} className="bg-slate-900 p-3 rounded" required />
+                    <input type="number" placeholder="Número" value={form.numero} onChange={(e) => setForm({...form, numero: e.target.value})} className="bg-slate-900 p-3 rounded" required />
+                    <select value={form.posicion} onChange={(e) => setForm({...form, posicion: e.target.value})} className="bg-slate-900 p-3 rounded">
                         <option value="">Seleccionar posición</option> {/* Agregado para placeholder */}
                         <option value="Portero">Portero</option>
                         <option value="Defensa">Defensa</option>
                         <option value="Mediocampista">Mediocampista</option>
                         <option value="Delantero">Delantero</option>
                     </select>
-                    <input ref={fileInputRef} type="file" accept="image/*" placeholder="URL Foto" onChange={(e) => setFoto(e.target.files[0])} className="bg-black border border-gray-700 px-4 py-2 rounded" required />
+                    <input ref={fileInputRef} type="file" accept="image/*" placeholder="URL Foto" onChange={(e) => setFoto(e.target.files[0])} className="bg-slate-900 p-3 rounded" required />
 
                     <button className="md:col-span-5 bg-red-600 hover:bg-red-700 transition py-3 rounded font-semibold">
                         {editando ? "Actualizar Jugador" : "Agregar Jugador"}
