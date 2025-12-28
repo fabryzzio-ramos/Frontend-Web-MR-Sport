@@ -9,8 +9,8 @@ function AdminRoute({ children }) {
             <div className="min-h-screen flex items-center justify-center text.white">Cargando...</div>
         );
     }
-    
-    if (!user || user.rol !== "admin") return <Navigate to="/" replace />;
+    if (!user) return <Navigate to="/" replace />;
+    if (user.rol !== "admin") return <Navigate to="/" replace />;
 
     return children;
 }

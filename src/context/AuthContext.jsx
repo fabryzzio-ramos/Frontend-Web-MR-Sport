@@ -12,7 +12,12 @@ export function AuthProvider({ children }) {
         async function loadUser() {
             try {
                 const data = await apiGet("/auth/me");
-                setUser(data.usuario);
+                setUser({
+                    id: data.usuario.id,
+                    nombre: data.usuario.nombre,
+                    correo: data.usuario.correo,
+                    rol: data.usuario.rol
+                });
             } catch (error) {
                 setUser(null);
             } finally {
