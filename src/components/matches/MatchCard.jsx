@@ -3,6 +3,11 @@ import React from "react";
 function MatchCard({ partido }) {
     if (!partido) return null;
 
+    const optimizeImageUrl = (url) => {
+        if (!url) return null;
+        return url.replace("/upload/", "/upload/q_auto,f_auto/");
+    };
+
     return (
         <div className="bg-[#020617] border border-white/10 rounded-3xl p-4 mb:p-6 text-sm md:text-base shadow-xl hover:shadow-red-500/10 hover:-translate-y-2 transition-all duration-300">
             {/* COMPETICION */}
@@ -14,7 +19,7 @@ function MatchCard({ partido }) {
                 {/* EQUIPO LOCAL */}
                 <div className="flex flex-col items-center gap-2">
                     {partido.logo?.local ? (
-                        <img src={partido.logo.local} alt={partido.local} className="w-16 h-16 object-contain" loading="lazy" decoding="async" />
+                        <img src={optimizeImageUrl(partido.logo.local)} alt={partido.local} className="w-16 h-16 object-contain" loading="lazy" decoding="async" />
                     ) : (
                         <div className="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center text-white text-xs">Logo</div>
                     )}
@@ -27,7 +32,7 @@ function MatchCard({ partido }) {
                 {/* EQUIPO VISITANTE */}
                 <div className="flex flex-col items-center gap-2">
                     {partido.logo?.rival ? (
-                        <img src={partido.logo.rival} alt={partido.rival} className="w-16 h-16 object-contain" loading="lazy" decoding="async" />
+                        <img src={optimizeImageUrl(partido.logo.rival)} alt={partido.rival} className="w-16 h-16 object-contain" loading="lazy" decoding="async" />
                     ) : (
                         <div className="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center text-white text-xs">Logo</div>
                     )}
