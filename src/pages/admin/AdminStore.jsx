@@ -6,14 +6,13 @@ function AdminStore() {
     const [form, setForm] = useState({
         nombre: "",
         precio: "",
-        descripcion: ""
+        descripcion: "",
+        imagen: null
     });
 
-    const token = localStorage.getItem("token");
-
     async function cargarProductos() {
-        const res = await apiGet("/productos");
-        setProductos(res);
+        const data = await apiGet("/productos");
+        setProductos(data);
     }
 
     useEffect(() => {
@@ -23,15 +22,28 @@ function AdminStore() {
     async function handleSubmit(e) {
         e.preventDefault();
         
-        await apiPost("/productos", form, true);
-        setForm({ nombre: "", precio: "", descripcion: "" });
+        const formData = new FormData();
+        formData.append("nombre", form.nombre);
+        formData.append("precio", form.precio);
+        formData.append("descripcion", form.descripcion);
+        if (form.imagen) {
+            formData.append("imagen", form.imagen);
+        }
+
+        await apiPost("/productos", {
+            method: "POST",
+            credentials: "include",
+            body: formData
+        });
+
+        setForm({ nombre: "", precio: "", descripcion: "", imagen: null });
         cargarProductos();
     }
 
     async function eliminar(id) {
         if (!confirm("¿Eliminar producto?")) return;
 
-        await apiDelete(`/productos/${id}`, true);
+        await apiDelete(`/productos/${id}`);
         cargarProductos();
     }
 
@@ -44,6 +56,7 @@ function AdminStore() {
                 <input placeholder="Nombre" value={form.nombre} onChange={e => setForm({...form, nombre: e.target.value})} className="bg-slate-900 p-3 rounded" />
                 <input placeholder="Precio" type="number" value={form.precio} onChange={e => setForm({...form, precio: e.target.value})} className="bg-slate-900 p-3 rounded" />
                 <input placeholder="Descripcion" value={form.descripcion} onChange={e => setForm({...form, descripcion: e.target.value})} className="bg-slate-900 p-3 rounded" />
+                <input type="file" accept="image/*" placeholder="Imagen" onChange={e => setForm({...form, imagen: e.target.files[0]})} className="bg-slate-900 p-3 rounded" />
 
                 <button className="bg-red-600 py-3 rounded col-span-full">Agregar producto</button>
             </form>
@@ -53,6 +66,7 @@ function AdminStore() {
                 {productos.map(p => (
                     <div key={p._id} className="bg-slate-900 p-4 rounded flex justify-between">
                         <div>
+                            <img src={p.imagen?.url || "https://via.placeholder.com/80"} alt={p.nombre} className="w-20 h-20 object-cover rounded" />
                             <p className="font-semibold">{p.nombre}</p>
                             <p className="text-gray-400">S/. {p.precio}</p>
                             <p className="text-gray-400">{p.descripcion}</p>
