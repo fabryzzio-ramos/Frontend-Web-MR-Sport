@@ -22,8 +22,7 @@ function Login() {
 
         try {
             await login(correo, contraseña);
-            
-            navigate("/")
+           
         } catch (error) {
             setError(error.message);
         } finally {
