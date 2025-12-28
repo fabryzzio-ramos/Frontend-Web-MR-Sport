@@ -80,11 +80,12 @@ function AdminPartidos() {
     }
 
     function editarPartido(partido) {
+        setError("");
         setEditando(partido._id);
         setForm({
             local: partido.local,
             rival: partido.rival,
-            fecha: partido.fecha,
+            fecha: partido.fecha ? new Date(partido.fecha).toISOString().split('T')[0] : "",  // Formato YYYY-MM-DD
             lugar: partido.lugar,
             competicion: partido.competicion,
             resultado: partido.resultado || "",
@@ -96,7 +97,7 @@ function AdminPartidos() {
     async function eliminar(id) {
         if (!confirm("¿Eliminar partido?")) return;
         try {
-            await apiDelete(`/partidos/${id}`);
+            await apiDelete(`/partidos/${id}`, true);
             cargarPartidos();
         } catch (err) {
             setError("Error al eliminar el partido");
@@ -105,7 +106,7 @@ function AdminPartidos() {
     }
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-8 p-6">
             <h2 className="text-2xl font-bold">Gestionar Partidos</h2>
             {error && <p className="text-red-500 mb-4">{error}</p>}
 
@@ -117,8 +118,14 @@ function AdminPartidos() {
                 <input placeholder="Lugar" value={form.lugar} onChange={e => setForm({...form, lugar: e.target.value})} className="bg-slate-900 p-3 rounded"  />
                 <input placeholder="Competicion" value={form.competicion} onChange={e => setForm({...form, competicion: e.target.value})} className="bg-slate-900 p-3 rounded"  />
                 <input placeholder="Resultado" value={form.resultado} onChange={e => setForm({...form, resultado: e.target.value})} className="bg-slate-900 p-3 rounded"  />
-                <input ref={fileInputLocalRef} type="file" accept="image/*" placeholder="URL Logo Local" onChange={e => setLogoLocal(e.target.files[0])} className="bg-slate-900 p-3 rounded"  />
-                <input ref={fileInputRivalRef} type="file" accept="image/*" placeholder="URL Logo Rival" onChange={e => setLogoRival(e.target.files[0])} className="bg-slate-900 p-3 rounded"  />
+                <div>
+                    <label className="block text-sm mb-1">Logo Local</label>
+                    <input ref={fileInputLocalRef} type="file" accept="image/*" onChange={e => setLogoLocal(e.target.files[0])} className="bg-slate-900 p-3 rounded w-full"  />
+                </div>
+                <div>
+                    <label className="block text-sm mb-1">Logo Rival</label>
+                    <input ref={fileInputRivalRef} type="file" accept="image/*" onChange={e => setLogoRival(e.target.files[0])} className="bg-slate-900 p-3 rounded w-full"  />
+                </div>
 
                 <button className="col-span-full bg-red-600 hover:bg-red-700 transition py-3 rounded font-semibold">
                     {editando ? "Actualizar Partido" : "Crear Partido"}
@@ -136,14 +143,14 @@ function AdminPartidos() {
                 {partidos.map(p => (
                     <div key={p._id} className="flex justify-between bg-gray-800 p-4 rounded">
                         <div className="flex items-center gap-4">
-                            {p.logo?.local ? (
-                                <img src={p.logo.local} alt={p.local} className="w-8 h-8 object-contain" />
+                            {p.logo?.local?.url ? (
+                                <img src={p.logo.local.url} alt={p.local} className="w-8 h-8 object-contain" />
                             ) : (
                                 <div className="w-8 h-8 bg-gray-600 rounded-full"></div>
                             )}
                             <span>{p.local} vs {p.rival}</span>
-                            {p.logo?.rival ? (
-                                <img src={p.logo.rival} alt={p.rival} className="w-8 h-8 object-contain" />
+                            {p.logo?.rival?.url ? (
+                                <img src={p.logo.rival.url} alt={p.rival} className="w-8 h-8 object-contain" />
                             ) : (
                                 <div className="w-8 h-8 bg-gray-600 rounded-full"></div>
                             )}
