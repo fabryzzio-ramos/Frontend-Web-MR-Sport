@@ -6,7 +6,7 @@ function StoreCard({ producto }) {
     const imageUrl = producto.imagen?.url ? producto.imagen.url.replace("/upload/", "/upload/w_400,h_400,c_fill,q_auto,f_auto/") : "/placeholder.png";
     return (
         <div className="bg-[#020617] rounded-2xl overflow-hidden border border-white/10 hover:border-red-500/50 transition">
-            <div className="h-48">
+            <div className="h-64">
                 <img src={imageUrl} alt={producto.nombre} className="w-full h-full object-cover" loading="lazy" decoding="async" />
             </div>
 
