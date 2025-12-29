@@ -15,7 +15,7 @@ function OrdenSuccess() {
 
                 <div className="flex flex-col gap-4">
                     <Link to="/tienda" className="bg-red-600 hover:bg-red-700 transition py-3 rounded-full font-semibold">Seguir comprando</Link>
-                    <Link to="/perfil/ordenes" className="border border-white/20 hover:border-white/40 transition py-3 rounded-full text-sm">Ver mis ordenes</Link>
+                    <Link to="/tienda/mis-ordenes" className="border border-white/20 hover:border-white/40 transition py-3 rounded-full text-sm">Ver mis ordenes</Link>
                 </div>
             </div>
         </main>

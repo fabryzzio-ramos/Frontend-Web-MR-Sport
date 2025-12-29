@@ -77,7 +77,7 @@ function MisOrdenes() {
                                 <div className="flex justify-between items-center mb-6">
                                     <div>
                                         <p className="text-sm text-gray-400 font-medium">Orden #{orden._id.slice(-6)}</p>
-                                        <p className="text-xs text-gray-500">Fecha: {new Date(orden.fecha).toLocaleDateString()}</p>
+                                        <p className="text-xs text-gray-500">Fecha: {orden.createdAt ? new Date(orden.createdAt).toLocaleDateString() : 'Fecha no disponible'} </p>
                                     </div>
                                     <div className="flex items-center space-x-2">
                                         {orden.estado === "pendiente" && <ClockIcon className="h-5 w-5 text-yellow-400" />}
