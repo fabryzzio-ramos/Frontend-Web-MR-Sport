@@ -13,8 +13,12 @@ function AdminPartidos() {
     });
     const [logoLocal, setLogoLocal] = useState(null);
     const [logoRival, setLogoRival] = useState(null);
+    const [previewLocal, setPreviewLocal] = useState(null);
+    const [previewRival, setPreviewRival] = useState(null);
+
     const [editando, setEditando] = useState(null);
     const [error, setError] = useState("");
+
     const fileInputLocalRef = useRef(null);
     const fileInputRivalRef = useRef(null);
 
@@ -73,6 +77,8 @@ function AdminPartidos() {
         setForm({ local: "", rival: "", fecha: "", lugar: "", competicion: "", resultado: "" });
         setLogoLocal(null);
         setLogoRival(null);
+        setPreviewLocal(null);
+        setPreviewRival(null);
         setEditando(null);
         setError("");
         if (fileInputLocalRef.current) fileInputLocalRef.current.value = "";
@@ -90,6 +96,8 @@ function AdminPartidos() {
             competicion: partido.competicion,
             resultado: partido.resultado || "",
         });
+        setPreviewLocal(p.logo?.local?.url || null);
+        setPreviewRival(p.logo?.rival?.url || null);
         setLogoLocal(null);  // No pre-cargar archivos existentes; el usuario puede subir nuevos
         setLogoRival(null);
     }
@@ -118,13 +126,24 @@ function AdminPartidos() {
                 <input placeholder="Lugar" value={form.lugar} onChange={e => setForm({...form, lugar: e.target.value})} className="bg-slate-900 p-3 rounded"  />
                 <input placeholder="Competicion" value={form.competicion} onChange={e => setForm({...form, competicion: e.target.value})} className="bg-slate-900 p-3 rounded"  />
                 <input placeholder="Resultado" value={form.resultado} onChange={e => setForm({...form, resultado: e.target.value})} className="bg-slate-900 p-3 rounded"  />
+
                 <div>
                     <label className="block text-sm mb-1">Logo Local</label>
-                    <input ref={fileInputLocalRef} type="file" accept="image/*" onChange={e => setLogoLocal(e.target.files[0])} className="bg-slate-900 p-3 rounded w-full"  />
+                    <input ref={fileInputLocalRef} type="file" accept="image/*" onChange={e => {setLogoLocal(e.target.files[0]); setPreviewLocal[URL.createObjectURL(e.target.files[0])]}} className="bg-slate-900 p-3 rounded w-full"  />
+                    {previewLocal && (
+                        <div className="mt-2 w-20 h-20 bg-black rounded flex items-center justify-center">
+                            <img src={previewLocal} className="max-w-full max-h-full object-contain" />
+                        </div>
+                    )}
                 </div>
                 <div>
                     <label className="block text-sm mb-1">Logo Rival</label>
-                    <input ref={fileInputRivalRef} type="file" accept="image/*" onChange={e => setLogoRival(e.target.files[0])} className="bg-slate-900 p-3 rounded w-full"  />
+                    <input ref={fileInputRivalRef} type="file" accept="image/*" onChange={e => {setLogoRival(e.target.files[0]); setPreviewRival(URL.createObjectURL(e.target.files[0]))}} className="bg-slate-900 p-3 rounded w-full"  />
+                    {previewRival && (
+                        <div className="mt-2 w-20 h-20 bg-black rounded flex items-center justify-center">
+                            <img src={previewRival} className="max-w-full max-h-full object-contain" />
+                        </div>
+                    )}
                 </div>
 
                 <button className="col-span-full bg-red-600 hover:bg-red-700 transition py-3 rounded font-semibold">

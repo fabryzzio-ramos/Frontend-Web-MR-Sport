@@ -54,6 +54,7 @@ function AdminJugadores() {
     function resetForm() {
         setForm({ nombre: "", numero: "", posicion: "" });
         setFoto(null);
+        setPreview(null);
         setEditando(null);
         setError("");
         if (fileInputRef.current) {
@@ -68,6 +69,7 @@ function AdminJugadores() {
             numero: jugador.numero,
             posicion: jugador.posicion
         });
+        setPreview(jugador.foto?.url || null);
         setFoto(null);
     }
 
@@ -101,11 +103,13 @@ function AdminJugadores() {
                         <option value="Mediocampista">Mediocampista</option>
                         <option value="Delantero">Delantero</option>
                     </select>
-                    <input ref={fileInputRef} type="file" accept="image/*" placeholder="URL Foto" onChange={(e) => {setFoto(e.target.files[0]); setPreview(URL.createObjectURL(e.target.files[0]))}} className="bg-slate-900 p-3 rounded" required />
+                    <input ref={fileInputRef} type="file" accept="image/*" onChange={(e) => {setFoto(e.target.files[0]); setPreview(URL.createObjectURL(e.target.files[0]))}} className="bg-slate-900 p-3 rounded" required />
                     {preview && (
-                        <img src={preview} className="w-32 h-32 object-cover rounded border" />
+                        <div className="md:col-span-2 flex justify-center">
+                            <img src={preview} className="w-32 h-32 object-cover rounded border" />
+                        </div>
                     )}
-                    
+
                     <button className="md:col-span-5 bg-red-600 hover:bg-red-700 transition py-3 rounded font-semibold">
                         {editando ? "Actualizar Jugador" : "Agregar Jugador"}
                     </button>

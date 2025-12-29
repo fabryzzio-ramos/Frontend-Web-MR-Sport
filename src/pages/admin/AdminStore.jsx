@@ -10,6 +10,7 @@ function AdminStore() {
     });
     const [imagen, setImagen] = useState(null);
     const [editando, setEditando] = useState(null);
+    const [preview, setPreview] = useState(null);
     const [error, setError] = useState("");
     const fileInputRef = useRef(null)
 
@@ -62,6 +63,7 @@ function AdminStore() {
     function resetForm() {
         setForm({ nombre: "", precio: "", descripcion: "" });
         setImagen(null);
+        setPreview(null);
         setEditando(null);
         setError("");
         if (fileInputRef.current) {
@@ -76,6 +78,7 @@ function AdminStore() {
             precio: producto.precio,
             descripcion: producto.descripcion
         });
+        setPreview(producto.imagen?.url || null);
         setImagen(null);
     }
 
@@ -100,8 +103,13 @@ function AdminStore() {
                 <input placeholder="Nombre" value={form.nombre} onChange={e => setForm({...form, nombre: e.target.value})} className="bg-slate-900 p-3 rounded" />
                 <input placeholder="Precio" type="number" value={form.precio} onChange={e => setForm({...form, precio: e.target.value})} className="bg-slate-900 p-3 rounded" />
                 <input placeholder="Descripcion" value={form.descripcion} onChange={e => setForm({...form, descripcion: e.target.value})} className="bg-slate-900 p-3 rounded" />
-                <input ref={fileInputRef} type="file" accept="image/*" placeholder="Imagen" onChange={e => setImagen(e.target.files[0])} className="bg-slate-900 p-3 rounded" />
-
+                <input ref={fileInputRef} type="file" accept="image/*" onChange={e => {setImagen(e.target.files[0]); setPreview(URL.createObjectURL(e.target.files[0]))}} className="bg-slate-900 p-3 rounded" />
+                {preview && (
+                        <div className="md:col-span-2 flex justify-center">
+                            <img src={preview} className="w-32 h-32 object-cover rounded border" />
+                        </div>
+                )}
+                
                 <button className="md:col-span-5 bg-red-600 hover:bg-red-700 transition py-3 rounded font-semibold">
                     {editando ? "Actualizar Producto" : "Agregar Producto"}
                 </button>
