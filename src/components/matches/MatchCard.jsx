@@ -5,7 +5,7 @@ function MatchCard({ partido }) {
 
     const optimizeImageUrl = (url) => {
         if (!url) return null;
-        return url.replace("/upload/", "/upload/q_auto,f_auto/");
+        return url.replace("/upload/", "/upload/w_300,h_300,c_fit,q_auto,f_auto/");
     };
 
     return (
