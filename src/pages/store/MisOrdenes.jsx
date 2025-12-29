@@ -49,8 +49,8 @@ function MisOrdenes() {
     }
 
     return (
-        <main className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white px-6 py-20">
-            <div className="max-w-6xl mx-auto">
+        <main className="w-full bg-gradient-to-br from-black via-gray-900 to-black text-white px-6 py-20">
+            <div className="w-full">
                 <div className="text-center mb-12">
                     {/* Placeholder para logo - reemplaza con tu logo */}
                     <div className="inline-block mb-4">
@@ -71,7 +71,7 @@ function MisOrdenes() {
                         </button>
                     </div>
                 ): (
-                    <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2">
+                    <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
                         {ordenes.map((orden, index) => (
                             <div key={orden._id} className="bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105" style={{ animationDelay: `${index * 0.1}s` }}>
                                 {/* HEADER */}
