@@ -23,6 +23,7 @@ const AdminStore = lazy(() => import("./pages/admin/AdminStore"));
 
 const StoreLayout = lazy(() => import("./pages/store/StoreLayout"));
 const StoreHome = lazy(() => import("./pages/store/StoreHome"));
+const Cart = lazy(() => import("./pages/store/Cart"));
 
 function App() {
     const { loading } = useAuth();
@@ -67,6 +68,7 @@ function AppLayout() {
                         {/* SHOP */}
                         <Route path="/tienda" element={<StoreLayout />}>
                             <Route index element={<StoreHome />} />
+                            <Route path="carrito" element={<Cart />} />
                         </Route>
                     </Routes>
                 </Suspense>
