@@ -9,7 +9,6 @@ import FullLoader from "./components/ui/FullLoader";
 
 const Home = lazy(() => import("./pages/Home"));
 const Matches = lazy(() => import("./pages/Matches"));
-const Store = lazy(() => import("./pages/Store"));
 const Login = lazy(() => import("./pages/Login"));
 const Team = lazy(() => import("./pages/Team"));
 const About = lazy(() => import("./pages/About"));
@@ -21,6 +20,9 @@ const AdminJugadores = lazy(() => import("./pages/admin/AdminJugadores"));
 const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
 const AdminPartidos = lazy(() => import("./pages/admin/AdminPartidos"));
 const AdminStore = lazy(() => import("./pages/admin/AdminStore"));
+
+const StoreLayout = lazy(() => import("./pages/store/StoreLayout"));
+const StoreHome = lazy(() => import("./pages/store/StoreHome"));
 
 function App() {
     const { loading } = useAuth();
@@ -47,7 +49,7 @@ function AppLayout() {
                         <Route path="/" element={<Home />} />
                         <Route path="/equipo" element={<Team />} />
                         <Route path="/partidos" element={<Matches />} />
-                        <Route path="/tienda" element={<PrivateRoute><Store /></PrivateRoute>} />
+                        <Route path="/tienda" element={<StoreLayout />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/historia" element={<About />} />
                         <Route path="/contacto" element={<Contact />} />
@@ -59,6 +61,11 @@ function AppLayout() {
                             <Route path="jugadores" element={<AdminJugadores />} />
                             <Route path="partidos" element={<AdminPartidos />} />
                             <Route path="productos" element={<AdminStore />} />
+                        </Route>
+
+                        {/* SHOP */}
+                        <Route path="/tienda" element={<StoreLayout />}>
+                            <Route index element={<StoreHome />} />
                         </Route>
                     </Routes>
                 </Suspense>
