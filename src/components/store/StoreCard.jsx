@@ -3,10 +3,12 @@ import React from "react";
 function StoreCard({ producto }) {
     if (!producto) return null;
 
-    const imageUrl = producto.imagen?.url ? producto.imagen.url.replace("/upload/", "/upload/w_600,h_600,c_fill,q_auto,f_auto/") : "/placeholder.png";
+    const imageUrl = producto.imagen?.url ? producto.imagen.url.replace("/upload/", "/upload/w_400,h_400,c_fill,q_auto,f_auto/") : "/placeholder.png";
     return (
         <div className="bg-[#020617] rounded-2xl overflow-hidden border border-white/10 hover:border-red-500/50 transition">
-            <img src={imageUrl} alt={producto.nombre} className="w-full h-full object-cover" loading="lazy" decoding="async" />
+            <div className="h-48">
+                <img src={imageUrl} alt={producto.nombre} className="w-full h-full object-cover" loading="lazy" decoding="async" />
+            </div>
 
             <div className="p-4 text-center">
                 <h3 className="text-white font-semibold text-sm">{producto.nombre}</h3>
