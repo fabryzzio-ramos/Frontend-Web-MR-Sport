@@ -6,8 +6,8 @@ import useSEO from "../hooks/useSEO";
 
 function Matches() {
     useSEO({
-        title: "Calendario Oficial | Club Deportivo Oficial",
-        description: "Calendario oficial de MR Sport temporada 2025."
+        title: "Partidos | MR Sport",
+        description: "Calendario de partidos, resultados y competiciones del club MR Sport."
     });
     const [partidos, setPartidos] = useState([]);
     const [mesActual, setMesActual] = useState(new Date().getMonth());

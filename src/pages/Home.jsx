@@ -10,7 +10,7 @@ import useSEO from "../hooks/useSEO";
 function Home() {
     useSEO({
         title: "MR Sport | Club Deportivo Oficial",
-        description: "Web de MR Sport, partidos, jugadores, calendario y tienda oficial."
+        description: "MR Sport es un club deportivo con historia, equipo competitivo, partidos oficiales y tienda del club"
     });
     
     return (

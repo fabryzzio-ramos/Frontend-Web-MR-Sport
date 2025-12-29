@@ -14,5 +14,16 @@ export default function useSEO({ title, description }) {
         }
 
         meta.setAttribute("content", description);
-    }, [title, description]);
+
+        if (keywords) {
+            let key = document.querySelector('meta[name="keywords"]');
+
+            if (!key) {
+                document.createElement("meta");
+                key.name = "keywords";
+                document.head.appendChild(key);
+            }
+            key.content = keywords;
+        }
+    }, [title, description, keywords]);
 }

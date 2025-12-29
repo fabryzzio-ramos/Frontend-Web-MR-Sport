@@ -6,8 +6,8 @@ import useSEO from "../hooks/useSEO";
 
 function Team() {
     useSEO({
-        title: "Equipo oficial | Club Deportivo Oficial",
-        description: "Plantilla oficial de jugadores de MR Sport temporada 2025."
+        title: "Equipo | MR Sport",
+        description: "Conoce a los jugadores oficiales del club MR Sport, posiciones, números y trayectoria."
     });
 
     const [jugadores, setJugadores] = useState([]);
