@@ -49,7 +49,7 @@ function MisOrdenes() {
     }
 
     return (
-        <main className="w-full bg-gradient-to-br from-black via-gray-900 to-black text-white px-6 py-20">
+        <main className="w-full bg-gradient-to-br from-black via-gray-900 to-black text-white px-0 py-4">
             <div className="w-full">
                 <div className="text-center mb-12">
                     {/* Placeholder para logo - reemplaza con tu logo */}
@@ -62,7 +62,6 @@ function MisOrdenes() {
                     <p className="text-gray-400 text-lg">Gestión de Órdenes - MR Sport</p>
                 </div>
 
-                {error && <p className="text-red-500 mb-4">{error}</p>}
                 {ordenes.length === 0 ? (
                     <div className="text-center py-16">
                         <p className="text-gray-400 text-xl mb-4">Aún no has realizado compras</p>
@@ -71,9 +70,9 @@ function MisOrdenes() {
                         </button>
                     </div>
                 ): (
-                    <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+                    <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
                         {ordenes.map((orden, index) => (
-                            <div key={orden._id} className="bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105" style={{ animationDelay: `${index * 0.1}s` }}>
+                            <div key={orden._id} className="bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105" style={{ animationDelay: `${index * 0.1}s` }}>
                                 {/* HEADER */}
                                 <div className="flex justify-between items-center mb-6">
                                     <div>
