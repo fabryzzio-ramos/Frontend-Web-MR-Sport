@@ -10,7 +10,7 @@ function PlayerCard({ jugador }) {
             <span className="absolute top-6 right-6 text-[140px] font-extrabold text-red-600/10 z-0">{jugador.numero}</span>
 
             {/* IMAGEN */}
-            <img src={imageUrl} alt={jugador.nombre} className="relative z-10 w-full aspect-[3/4] h-80 object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" decoding="async" />
+            <img src={imageUrl} alt={jugador.nombre} className="relative z-10 w-full aspect-[3/4] h-100 object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" decoding="async" />
             
             {/* OVERLAY */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
