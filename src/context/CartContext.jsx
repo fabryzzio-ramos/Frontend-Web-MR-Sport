@@ -18,7 +18,7 @@ function CartProvider({ children }) {
 
     function addToCart(product) {
         setCart(prev => {
-            const existe = prev.find(p => p._id === product.id);
+            const existe = prev.find(p => p._id === product._id);
             if (existe) {
                 return prev.map(p =>p._id === product._id ? {...p, cantidad: p.cantidad + 1} : p);
             };
