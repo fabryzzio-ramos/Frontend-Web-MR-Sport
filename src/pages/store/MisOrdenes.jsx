@@ -49,7 +49,7 @@ function MisOrdenes() {
     }
 
     return (
-        <main className="w-full bg-gradient-to-br from-black via-gray-900 to-black text-white px-0 py-4">
+        <main className="w-full text-white px-0 py-4">
             <div className="w-full">
                 <div className="text-center mb-12">
                     {/* Placeholder para logo - reemplaza con tu logo */}

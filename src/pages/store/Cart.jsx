@@ -29,7 +29,7 @@ function Cart() {
     }
 
     return (
-        <main className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white px-6 py-20">
+        <main className="min-h-screen text-white px-6 py-20">
             <div className="max-w-4xl mx-auto">
                 {/* Header con identidad del equipo */}
                 <div className="text-center mb-8">
