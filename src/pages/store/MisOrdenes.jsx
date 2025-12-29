@@ -26,6 +26,9 @@ function MisOrdenes() {
             <div className="min-h-screen flex items-center justify-center text-white">Cargando ordenes...</div>
         );
     }
+    if (error) {
+        return <p className="text-red-500">{error}</p>
+    }
 
     return (
         <main className="min-h-screen bg-black text-white px-6 py-20">
@@ -34,7 +37,7 @@ function MisOrdenes() {
 
                 {error && <p className="text-red-500 mb-4">{error}</p>}
                 {ordenes.length === 0 ? (
-                    <p className="text-gray-400">Aún no has realizado compras</p>
+                    <p className="text-center text-gray-400">Aún no has realizado compras</p>
                 ): (
                     <div className="space-y-6">
                         {ordenes.map(orden => (
