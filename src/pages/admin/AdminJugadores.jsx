@@ -9,6 +9,7 @@ function AdminJugadores() {
     const [foto, setFoto] = useState(null);
     const [editando, setEditando] = useState(null);
     const [error, setError] = useState(""); // Para mostrar errores en la UI
+    const [preview, setPreview] = useState(null);
     const fileInputRef = useRef(null); // Ref para resetear el input de archivo
 
     async function cargarJugadores() {
@@ -100,8 +101,11 @@ function AdminJugadores() {
                         <option value="Mediocampista">Mediocampista</option>
                         <option value="Delantero">Delantero</option>
                     </select>
-                    <input ref={fileInputRef} type="file" accept="image/*" placeholder="URL Foto" onChange={(e) => setFoto(e.target.files[0])} className="bg-slate-900 p-3 rounded" required />
-
+                    <input ref={fileInputRef} type="file" accept="image/*" placeholder="URL Foto" onChange={(e) => {setFoto(e.target.files[0]); setPreview(URL.createObjectURL(e.target.files[0]))}} className="bg-slate-900 p-3 rounded" required />
+                    {preview && (
+                        <img src={preview} className="w-32 h-32 object-cover rounded border" />
+                    )}
+                    
                     <button className="md:col-span-5 bg-red-600 hover:bg-red-700 transition py-3 rounded font-semibold">
                         {editando ? "Actualizar Jugador" : "Agregar Jugador"}
                     </button>
