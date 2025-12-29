@@ -3,7 +3,7 @@ import React from "react";
 function PlayerCard({ jugador }) {
     if (!jugador) return null;
 
-    const imageUrl = jugador.foto?.url ? jugador.foto.url.replace("/upload/", "/upload/q_auto,f_auto/") : "/placeholder.png";
+    const imageUrl = jugador.foto?.url ? jugador.foto.url.replace("/upload/", "/upload/w_300,h_300,c_fill,q_auto,f_auto/") : "/placeholder.png";
     return (
         <div className="relative bg-[#020617] border border-white/10 rounded-3xl overflow-hidden group hover:border-red-500/50 hover:scale-105 transition-all duration-300">
             {/* NUMERO GIGANTE */}
