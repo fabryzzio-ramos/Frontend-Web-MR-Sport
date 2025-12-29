@@ -8,7 +8,7 @@ function Cart() {
         return (
             <div className="p-10 text-center">
                 <h2 className="text-center text-gray-400">Tu carrito esta vacio.</h2>
-                <Link to="tienda" className="text-red-500">Volver a la tienda</Link>
+                <Link to="/tienda" className="text-red-500">Volver a la tienda</Link>
             </div>
         );
     }
