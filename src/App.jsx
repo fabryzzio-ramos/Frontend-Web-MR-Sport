@@ -24,6 +24,8 @@ const AdminStore = lazy(() => import("./pages/admin/AdminStore"));
 const StoreLayout = lazy(() => import("./pages/store/StoreLayout"));
 const StoreHome = lazy(() => import("./pages/store/StoreHome"));
 const Cart = lazy(() => import("./pages/store/Cart"));
+const Checkout = lazy(() => import("./pages/store/Checkout"));
+const MisOrdenes = lazy(() => import("./pages/store/MisOrdenes"));
 
 function App() {
     const { loading } = useAuth();
@@ -69,6 +71,8 @@ function AppLayout() {
                         <Route path="/tienda" element={<StoreLayout />}>
                             <Route index element={<StoreHome />} />
                             <Route path="carrito" element={<Cart />} />
+                            <Route path="checkout" element={<Checkout />} />
+                            <Route path="mis-ordenes" element={<PrivateRoute><MisOrdenes /></PrivateRoute>} />
                         </Route>
                     </Routes>
                 </Suspense>

@@ -11,6 +11,7 @@ function StoreLayout() {
                     <nav className="flex gap-6 text-sm uppercase">
                         <NavLink to="/tienda" className="hover:text-red-500">Productos</NavLink>
                         <NavLink to="/tienda/carrito" className="hover:text-red-500">Carrito</NavLink>
+                        <NavLink to="/mis-ordenes" className="hover:text-red-500">Mis Ordenes</NavLink>
                         <NavLink to="/" className="hover:text-red-500">Volver al club</NavLink>
                     </nav>
                 </div>

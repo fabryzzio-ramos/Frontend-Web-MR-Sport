@@ -1,10 +1,16 @@
 import { useCart } from "../../context/CartContext";
+import { Link } from "react-router-dom";
 
 function Cart() {
-    const { cart, removeFromCart, total } = useCart();
+    const { cart, removeFromCart, updateCantidad, total } = useCart();
     
     if (cart.length === 0) {
-        return <p className="text-center text-gray-400">Tu carrito esta vacio.</p>
+        return (
+            <div className="p-10 text-center">
+                <h2 className="text-center text-gray-400">Tu carrito esta vacio.</h2>
+                <Link to="tienda" className="text-red-500">Volver a la tienda</Link>
+            </div>
+        );
     }
 
     return (
@@ -13,18 +19,25 @@ function Cart() {
 
             {cart.map(p => (
                 <div key={p._id} className="flex justify-between items-center bg-slate-900 p-4 rounded">
+                    <img src={p.imagen?.url} alt={p.nombre} className="w-20 h-20 object-cover" />
                     <div>
-                        <p className="font-semibold">{p.nombre}</p>
-                        <p className="text-gray-400 text-sm">{p.cantidad} x S/ {p.precio}</p>
+                        <h3 className="font-semibold">{p.nombre}</h3>
+                        <p className="text-gray-400 text-sm">S/ {p.precio}</p>
+                        <input type="number" min="1" value={p.cantidad} onChange={e => updateCantidad(p._id, Number(e.target.value))} className="w-16 mt-2 bg-black" />
                     </div>
 
-                    <button onClick={() => removeFromCart(p._id)} className="text-red-500 hover:text-red-700">Eliminar</button>
+                    <div>
+                        <button onClick={() => updateCantidad(p._id, p.cantidad - 1)}>-</button>
+                        <span>{p.cantidad}</span>
+                        <button onClick={() => updateCantidad(p._id, p.cantidad + 1)}>+</button>
+                        <button onClick={() => removeFromCart(p._id)} className="text-red-500 hover:text-red-700">Eliminar</button>
+                    </div>
                 </div>
             ))}
 
             <div className="flex justify-between items-center pt-4 border-t border-white/10">
                 <p className="text-xl font-bold">Total: S/ {total}</p>
-                <button className="bg-red-600 hover:bg-red-700 px-6 py-3 rounded font-semibold">Finalizar compra</button>
+                <Link to="/tienda/checkout" className="block text-center bg-red-600 hover:bg-red-700 py-3 rounded font-semibold mt-6">Finalizar compra</Link>
             </div>
         </div>
     );
