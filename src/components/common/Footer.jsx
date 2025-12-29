@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 function Footer() {
     return (
         <footer className="bg-black border-t border-red-600 mt-24">
-            <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-3 gap-12">
-
+            <div className="max-w-7xl mx-auto px-6 py-14 flex flex-col items-center text-center gap-10">
                 {/* REDES SOCIALES */}
                 <div className="flex gap-6">
                     <SocialLink href="https://facebook.com" label="Facebook"><Facebook size={28} /></SocialLink>
@@ -17,7 +16,8 @@ function Footer() {
                     <img src="/logo.png" alt="Logo MR Sport" className="w-16 h-16 object-contain" />
                     <h2 className="text-white font-extrabold text-lg tracking-wide">MR SPORT</h2>
                 </div>
-
+            </div>
+            <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-3 gap-12">
                 {/* BRAND */}
                 <div>
                     <h3 className="text-white font-extrabold text-xl">MR <span className="text-red-600">Sport</span></h3>
