@@ -49,7 +49,6 @@ function AppLayout() {
                         <Route path="/" element={<Home />} />
                         <Route path="/equipo" element={<Team />} />
                         <Route path="/partidos" element={<Matches />} />
-                        <Route path="/tienda" element={<StoreLayout />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/historia" element={<About />} />
                         <Route path="/contacto" element={<Contact />} />
