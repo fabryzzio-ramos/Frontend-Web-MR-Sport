@@ -1,9 +1,22 @@
+import { Facebook, Instagram } from "lucide-react";
 import { Link } from "react-router-dom";
 
 function Footer() {
     return (
-        <footer className="bg-black border-t-2 border-red-600 mt-24">
-            <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-12">
+        <footer className="bg-black border-t border-red-600 mt-24">
+            <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-3 gap-12">
+
+                {/* REDES SOCIALES */}
+                <div className="flex gap-6">
+                    <SocialLink href="https://facebook.com" label="Facebook"><Facebook size={28} /></SocialLink>
+                    <SocialLink href="https://instagram.com" label="Instagram"><Instagram size={28} /></SocialLink>
+                </div>
+
+                {/* DIVIDER */}
+                <div className="w-full max-w-md h-px bg-white gap-3">
+                    <img src="/logo.png" alt="Logo MR Sport" className="w-16 h-16 object-contain" />
+                    <h2 className="text-white font-extrabold text-lg tracking-wide">MR SPORT</h2>
+                </div>
 
                 {/* BRAND */}
                 <div>
@@ -35,10 +48,29 @@ function Footer() {
 
             {/* COPYRIGHT */}
             <div className="border-t border-white/10 text-center py-6 text-gray-500 text-xs">
-                &copy; {new Date().getFullYear()} MR Sport. Todos los derechos reservados.
+                <p>&copy; {new Date().getFullYear()} MR SPORT. Todos los derechos reservados.</p>
+
+                <div className="flex gap-4 justify-center text-xs">
+                    <Link to="/privacidad" className="hover:text-white transition" >Política e Privacidad</Link>
+                    <span>.</span>
+                    <Link to="/terminos" className="hover:text-white transition">Términos y Condiciones</Link>
+                </div>
             </div>
         </footer>
     );
+}
+
+function SocialLink({ href, children, label }) {
+    return (
+        <a 
+            href={href} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            aria-label={label} 
+            className="w-12 h-12 flex items-center justify-center rounded-full border border-white/20 hover:border-red-500 hover:text-red-500 transition">
+            {children}
+        </a>
+    )
 }
 
 export default Footer;
