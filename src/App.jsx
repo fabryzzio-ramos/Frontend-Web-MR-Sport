@@ -46,7 +46,6 @@ function AppLayout() {
     return (
         <div className="min-h-screen bg-black text-white flex flex-col">
             {!isAdminRoute && !isStoreRoute && <NavBar />}
-            {!isStoreRoute && <Footer />}
 
             <main className="flex-1">
                 <Suspense fallback={<PageLoader />}>
@@ -78,7 +77,7 @@ function AppLayout() {
                 </Suspense>
             </main>
 
-            {!isAdminRoute && <Footer />}
+            {!isAdminRoute && !isStoreRoute && <Footer />}
         </div>
     );
 }
