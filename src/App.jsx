@@ -38,10 +38,12 @@ function App() {
 function AppLayout() {
     const location = useLocation();
     const isAdminRoute = location.pathname.startsWith("/admin");
+    const isStoreRoute = location.pathname.startsWith("/tienda");
 
     return (
         <div className="min-h-screen bg-black text-white flex flex-col">
             {!isAdminRoute && <NavBar />}
+            {!isStoreRoute && <NavBar /> || <Footer />}
 
             <main className="flex-1">
                 <Suspense fallback={<PageLoader />}>
