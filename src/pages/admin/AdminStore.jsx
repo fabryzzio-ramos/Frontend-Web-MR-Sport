@@ -7,6 +7,7 @@ function AdminStore() {
         nombre: "",
         precio: "",
         descripcion: "",
+        stock: "",
     });
     const [imagen, setImagen] = useState(null);
     const [editando, setEditando] = useState(null);
@@ -32,7 +33,7 @@ function AdminStore() {
         e.preventDefault();
         setError("");
 
-        if (!form.nombre || !form.precio || !form.descripcion) {
+        if (!form.nombre || !form.precio || !form.descripcion || !form.stock) {
             setError("Todos los campos son obligatorios");
             return;
         }
@@ -41,6 +42,7 @@ function AdminStore() {
         formData.append("nombre", form.nombre);
         formData.append("precio", form.precio);
         formData.append("descripcion", form.descripcion);
+        formData.append("stock", form.stock);
         if (imagen) {
             formData.append("imagen", imagen);
         }
@@ -61,7 +63,7 @@ function AdminStore() {
     }
 
     function resetForm() {
-        setForm({ nombre: "", precio: "", descripcion: "" });
+        setForm({ nombre: "", precio: "", descripcion: "", stock: "" });
         setImagen(null);
         setPreview(null);
         setEditando(null);
@@ -76,7 +78,8 @@ function AdminStore() {
         setForm({
             nombre: producto.nombre,
             precio: producto.precio,
-            descripcion: producto.descripcion
+            descripcion: producto.descripcion,
+            stock: producto.stock
         });
         setPreview(producto.imagen?.url || null);
         setImagen(null);
@@ -103,6 +106,7 @@ function AdminStore() {
                 <input placeholder="Nombre" value={form.nombre} onChange={e => setForm({...form, nombre: e.target.value})} className="bg-slate-900 p-3 rounded" />
                 <input placeholder="Precio" type="number" value={form.precio} onChange={e => setForm({...form, precio: e.target.value})} className="bg-slate-900 p-3 rounded" />
                 <input placeholder="Descripcion" value={form.descripcion} onChange={e => setForm({...form, descripcion: e.target.value})} className="bg-slate-900 p-3 rounded" />
+                <input placeholder="Stock" type="number" value={form.stock} onChange={e => setForm({...form, stock: e.target.value})} className="bg-slate-900 p-3 rounded" />
                 <input ref={fileInputRef} type="file" accept="image/*" onChange={e => {setImagen(e.target.files[0]); setPreview(URL.createObjectURL(e.target.files[0]))}} className="bg-slate-900 p-3 rounded" />
                 {preview && (
                         <div className="md:col-span-2 flex justify-center">
@@ -128,6 +132,7 @@ function AdminStore() {
                             <p className="font-semibold">{p.nombre}</p>
                             <p className="text-gray-400">S/. {p.precio}</p>
                             <p className="text-gray-400">{p.descripcion}</p>
+                            <p className="text-gray-400">{p.stock}</p>
                         </div>
 
                         <div className="flex flex-col gap-2">
