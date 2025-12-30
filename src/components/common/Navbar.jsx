@@ -61,16 +61,16 @@ function NavBar() {
     return (
         <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${
             scrolled 
-                ? "bg-gradient-to-r from-[#020617]/95 to-[#0f172a]/95 backdrop-blur-md shadow-2xl border-b border-gray-700/50" 
+                ? "bg-gradient-to-r from-[#020617]/95 via-[#0f172a]/95 to-[#020617]/95 backdrop-blur-lg shadow-2xl border-b-2 border-red-500/30" 
                 : "bg-transparent"
         }`}>
             <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-                {/* LOGO - Mejorado con gradiente y tamaño responsive */}
-                <Link to="/" className="text-lg md:text-xl font-extrabold bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent hover:from-red-400 hover:to-red-500 transition-all duration-300">
-                    MR SPORT
+                {/* LOGO - Mejorado con ícono sutil, gradiente y tamaño responsive */}
+                <Link to="/" className="flex items-center gap-2 text-lg md:text-xl font-extrabold bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent hover:from-red-400 hover:to-red-500 transition-all duration-300 hover:scale-105">
+                    <span className="text-red-500">⚽</span> MR SPORT
                 </Link>
 
-                {/* NAV DESKTOP - Mejorado con estilos profesionales */}
+                {/* NAV DESKTOP - Mejorado con estilos profesionales y efectos hover */}
                 <nav className="hidden md:flex items-center gap-8 text-sm uppercase font-medium text-gray-200">
                     {/* ENLACES PRINCIPALES */}
                     <ul className="flex items-center gap-6 text-sm">
@@ -79,38 +79,38 @@ function NavBar() {
                         ))}
                     </ul>
 
-                    {/* SOLO ADMIN - Mejorado con ícono sutil (usando texto) y hover */}
+                    {/* SOLO ADMIN - Mejorado con ícono sutil y hover con glow */}
                     {user?.rol === "admin" && (
-                        <Link to="/admin" className="text-yellow-400 hover:text-yellow-300 transition-all duration-300 flex items-center gap-1">
+                        <Link to="/admin" className="text-yellow-400 hover:text-yellow-300 transition-all duration-300 flex items-center gap-1 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50">
                             <span className="text-xs">⚙️</span> Admin
                         </Link>
                     )}
 
-                    {/* BOTÓN DE AUTENTICACIÓN - Mejorado con gradiente y consistencia */}
+                    {/* BOTÓN DE AUTENTICACIÓN - Mejorado con gradiente, glow y consistencia */}
                     {isAuthenticated ? (
                         <button 
                             onClick={handleLogout} 
-                            className="border border-red-500 px-4 py-2 text-sm text-red-500 hover:bg-gradient-to-r hover:from-red-500 hover:to-red-600 hover:text-white transition-all duration-300 rounded-md shadow-md"
+                            className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-4 py-2 text-sm font-semibold rounded-lg shadow-lg hover:shadow-red-500/50 hover:scale-105 transition-all duration-300 focus:ring-2 focus:ring-red-500 focus:outline-none"
                         >
                             Cerrar Sesión
                         </button>
                     ) : (
                         <Link 
                             to="/login" 
-                            className="border border-red-500 px-4 py-2 text-sm text-red-500 hover:bg-gradient-to-r hover:from-red-500 hover:to-red-600 hover:text-white transition-all duration-300 rounded-md shadow-md"
+                            className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-4 py-2 text-sm font-semibold rounded-lg shadow-lg hover:shadow-red-500/50 hover:scale-105 transition-all duration-300 focus:ring-2 focus:ring-red-500 focus:outline-none"
                         >
                             Iniciar Sesión
                         </Link>
                     )}
                 </nav>
 
-                {/* BOTÓN HAMBURGUESA - Mejorado con animaciones y accesibilidad */}
+                {/* BOTÓN HAMBURGUESA - Mejorado con animaciones, glow y accesibilidad */}
                 <button 
                     onClick={() => setOpen(!open)} 
                     aria-label="Abrir menú" 
                     aria-expanded={open} 
                     aria-controls="mobile-menu"
-                    className="md:hidden text-white focus:outline-none focus:ring-2 focus:ring-red-500 rounded-md p-1 transition-all duration-300"
+                    className="md:hidden text-white focus:outline-none focus:ring-2 focus:ring-red-500 rounded-md p-2 transition-all duration-300 hover:bg-red-500/20 hover:shadow-lg hover:shadow-red-500/50"
                 >
                     <div className="space-y-1">
                         <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${open ? "rotate-45 translate-y-1.5" : ""}`} />
@@ -119,11 +119,11 @@ function NavBar() {
                     </div>
                 </button>
 
-                {/* MENÚ MÓVIL - Mejorado con overlay clickeable, gradiente y accesibilidad */}
+                {/* MENÚ MÓVIL - Mejorado con slide-in desde la derecha, overlay clickeable, gradiente y accesibilidad */}
                 {open && (
                     <div 
                         id="mobile-menu"
-                        className="fixed inset-0 z-40 bg-gradient-to-b from-black/90 to-gray-900/90 backdrop-blur-md flex flex-col items-center justify-center gap-8 text-xl animate-fade-in" 
+                        className="fixed inset-0 z-40 bg-gradient-to-b from-black/95 to-gray-900/95 backdrop-blur-lg flex flex-col items-center justify-center gap-8 text-xl animate-slide-in-right" 
                         role="dialog" 
                         aria-modal="true"
                         onClick={() => setOpen(false)} // Cierra al hacer clic fuera
@@ -141,7 +141,7 @@ function NavBar() {
                             {isAuthenticated ? (
                                 <button 
                                     onClick={() => { handleLogout(); setOpen(false); }} 
-                                    className="border border-red-500 px-6 py-2 text-red-500 hover:bg-gradient-to-r hover:from-red-500 hover:to-red-600 hover:text-white transition-all duration-300 rounded-md shadow-lg"
+                                    className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-6 py-2 font-semibold rounded-lg shadow-lg hover:shadow-red-500/50 hover:scale-105 transition-all duration-300"
                                 >
                                     Cerrar Sesión
                                 </button>
@@ -161,7 +161,7 @@ function MovileLink({ to, label, close }) {
         <NavLink 
             to={to} 
             onClick={() => close(false)} 
-            className={({ isActive }) => `relative font-semibold transition-all duration-300 hover:scale-105 ${
+            className={({ isActive }) => `relative font-semibold transition-all duration-300 hover:scale-105 hover:text-red-400 ${
                 isActive 
                     ? "text-red-500 after:w-full after:scale-100" 
                     : "text-gray-300 hover:text-white"
@@ -176,11 +176,11 @@ function DesktopLink({ to, label }) {
     return (
         <NavLink 
             to={to} 
-            className={({ isActive }) => `transition-all duration-300 hover:scale-105 ${
+            className={({ isActive }) => `relative transition-all duration-300 hover:scale-105 hover:text-red-400 ${
                 isActive 
-                    ? "text-red-500" 
-                    : "hover:text-red-500"
-            }`}
+                    ? "text-red-500 after:w-full after:scale-100" 
+                    : "hover:text-white"
+            } after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:bg-red-500 after:w-0 after:transition-all after:duration-300 hover:after:w-full`}
         >
             {label}
         </NavLink>
