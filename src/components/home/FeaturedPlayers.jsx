@@ -34,7 +34,7 @@ function FeaturedPlayers() {
             ref={ref} 
             className={`relative transition-all duration-1000 ease-out delay-100 ${
                 visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            } bg-gradient-to-b from-slate-900 via-black to-[#020617] py-20 overflow-hidden`}
+            } bg-gradient-to-b from-black via-slate-900 to-[#020617] py-20 overflow-hidden`}  // Cambiado: from-black para continuidad con NextMatch
         >
             {/* Overlay decorativo para profundidad */}
             <div className="absolute inset-0 bg-gradient-radial from-red-600/5 to-transparent pointer-events-none"></div>
