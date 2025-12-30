@@ -67,7 +67,12 @@ function NavBar() {
             <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
                 {/* LOGO - Mejorado con ícono sutil, gradiente y tamaño responsive */}
                 <Link to="/" className="flex items-center gap-2 text-lg md:text-xl font-extrabold bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent hover:from-red-400 hover:to-red-500 transition-all duration-300 hover:scale-105">
-                    <span className="text-red-500">⚽</span> MR SPORT
+                    <img 
+                        src="/favicon.ico"  // Cambia a "/favicon.ico" si quieres, pero usa una imagen mejor
+                        alt="Logo de MR Sport" 
+                        className="w-6 h-6 md:w-8 md:h-8 object-contain"  // Tamaño responsive, ajusta según necesites
+                    />
+                    MR SPORT
                 </Link>
 
                 {/* NAV DESKTOP - Mejorado con estilos profesionales y efectos hover */}
