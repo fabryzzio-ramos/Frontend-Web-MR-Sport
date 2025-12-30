@@ -30,7 +30,7 @@ function Checkout() {
             await apiPost("/ordenes", payload);
 
             clearCart();
-            navigate("/tienda/compra-exitosa");
+            navigate("/tienda/pago");
         } catch (error) {
             setError("Error al crear la orden");
         } finally {
@@ -49,7 +49,7 @@ function Checkout() {
                 </div>
 
                 {/* RESUMEN */}
-               <div className="bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-2xl p-8 shadow-xl mb-8">
+                <div className="bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-2xl p-8 shadow-xl mb-8">
                     <h2 className="text-2xl font-bold mb-6">Resumen de tu pedido</h2>
                     {cart.length === 0 ? (
                         <p className="text-gray-400 text-center">Tu carrito está vacío.</p>

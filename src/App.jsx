@@ -28,6 +28,7 @@ const Cart = lazy(() => import("./pages/store/Cart"));
 const Checkout = lazy(() => import("./pages/store/Checkout"));
 const MisOrdenes = lazy(() => import("./pages/store/MisOrdenes"));
 const OrdenSuccess = lazy(() => import("./pages/store/OrdenSucces"));
+const Payment = lazy(() => import("./pages/store/PaymentPage"));
 
 function App() {
     const { loading } = useAuth();
@@ -76,6 +77,7 @@ function AppLayout() {
                             <Route path="checkout" element={<Checkout />} />
                             <Route path="mis-ordenes" element={<PrivateRoute><MisOrdenes /></PrivateRoute>} />
                             <Route path="compra-exitosa" element={<OrdenSuccess />} />
+                            <Route path="pago" element={<Payment />} />
                         </Route>
                     </Routes>
                 </Suspense>
