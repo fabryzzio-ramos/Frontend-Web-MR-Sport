@@ -8,7 +8,7 @@ function ClubHistory() {
             ref={ref} 
             className={`relative transition-all duration-1000 ease-out delay-200 ${
                 visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
-            } bg-gradient-to-b from-gray-900 via-gray-900 to-black text-white py-24 px-6 md:px-20 overflow-hidden`}
+            } bg-gradient-to-b from-black via-gray-900 to-gray-900 text-white py-24 px-6 md:px-20 overflow-hidden`}
         >
             {/* Overlay decorativo para profundidad */}
             <div className="absolute inset-0 bg-gradient-radial from-red-600/5 to-transparent pointer-events-none"></div>
