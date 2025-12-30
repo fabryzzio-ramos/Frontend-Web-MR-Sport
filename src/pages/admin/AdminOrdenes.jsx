@@ -21,6 +21,15 @@ function AdminOrdenes() {
         cargarOrdenes();
     }, []);
 
+    async function cambiarEstado(id, estado) {
+        try {
+            await apiPost(`/ordenes/${id}/estado`, {estado});
+            cargarOrdenes();
+        } catch (error) {
+            alert("Error al cambiar estado")
+        }
+    }
+
     if (loading) {
         return <div className="p-6 text-white">Cargando ordenes...</div>
     }
@@ -60,7 +69,15 @@ function AdminOrdenes() {
                                 </div>
                             ))}
                         </div>
-
+                        
+                        <div className="flex gap-2">
+                            {item.estado !== "pagado" && (
+                                <button onClick={() => cambiarEstado(item._id, "pagado")} className="px-3 py-1 bg-blue-600 rounded text-sm">Marcar pagado</button>
+                            )}
+                            {item.estado !== "enviado" && (
+                                <button onClick={() => cambiarEstado(item._id, "enviado")} className="px-3 py-1 bg-green-600 rounded text-sm">Marcar enviado</button>
+                            )}
+                        </div>
                         {/* FOOTER */}
                         <div className="flex justify-between items-center mt-4 border-t border-white/10 pt-4">
                             <p className="text-gray-400 text-sm">{new Date(orden.createdAt).toLocaleDateString()}</p>
