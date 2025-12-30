@@ -27,10 +27,8 @@ function Checkout() {
                 total
             };
 
-            await apiPost("/ordenes", payload);
-
-            clearCart();
-            navigate("/tienda/pago");
+            const ordenResponse = await apiPost("/ordenes", payload);
+            navigate("/tienda/pago", {state:{ordenId:ordenResponse._id,total}});
         } catch (error) {
             setError("Error al crear la orden");
         } finally {

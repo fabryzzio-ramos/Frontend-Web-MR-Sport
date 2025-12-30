@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useCart } from "../../context/CartContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { apiPost } from "../../services/api";
 
 function Payment() {
-    const { cart, total, clearCart } = useCart();
+    const { clearCart } = useCart();
     const navigate = useNavigate();
+    const location = useLocation();
+    const { ordenId, total } = location.state || {};
 
     const [metodo, setMetodo] = useState("");
     const [comprobante, setComprobante] = useState(null);
@@ -13,24 +15,25 @@ function Payment() {
     const [error, setError] = useState("");
 
     async function confirmarPago() {
-        if (!metodo) return alert("Selecciona un metodo de pago");
-        if (!comprobante || !comprobante.type.startsWith('image/')) return alert("Sube un comprobante de pago");
+        if (!ordenId) {
+            setError("No se encontro la orden. Regresa al chekout");
+            return;
+        }
+        if (!metodo) {
+            setError("Selecciona un metodo de pago");
+            return;
+        };
+        if (!comprobante || !comprobante.type.startsWith('image/')) {
+            setError("Sube un comprobante de pago valido");
+            return;
+        }
 
         setLoading(true);
         setError("");
 
         try {
-            const ordenResponse = await apiPost("/ordenes", {
-                productos: cart.map(p => ({
-                    producto: p._id,
-                    cantidad: p.cantidad
-                })),
-                metodoPago: metodo
-            });
-
-            const ordenId = ordenResponse._id;
-
             const formData = new FormData();
+            formData.append("metodoPago", metodo);
             formData.append("comprobante", comprobante);
 
             await apiPost(`/ordenes/${ordenId}/pago`, formData, true);
@@ -51,7 +54,7 @@ function Payment() {
             {/* TOTAL */}
             <div className="bg-slate-900 p-4 rounded mb-6">
                 <p className="text-gray-400">Total a pagar</p>
-                <p className="text-2xl font-bold text-red-500">S/ {total}</p>
+                <p className="text-2xl font-bold text-red-500">S/ {total ? total.toFixed(2) : "0.00"}</p>
             </div>
 
             {/* METODO */}
