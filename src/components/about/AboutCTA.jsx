@@ -9,7 +9,7 @@ function AboutCTA() {
             ref={ref} 
             className={`relative transition-all duration-1000 ease-out delay-600 ${
                 visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
-            } bg-gradient-to-t from-black via-gray-900 to-black border-t border-red-500/30 py-32 px-6 text-center overflow-hidden`}
+            } bg-gradient-to-t from-black via-gray-900 to-gray-900 border-t border-red-500/30 py-32 px-6 text-center overflow-hidden`}
         >
             {/* Overlay decorativo para profundidad */}
             <div className="absolute inset-0 bg-gradient-radial from-red-600/5 to-transparent pointer-events-none"></div>
