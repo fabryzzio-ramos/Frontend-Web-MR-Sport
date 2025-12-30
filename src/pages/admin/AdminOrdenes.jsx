@@ -63,7 +63,7 @@ function AdminOrdenes() {
                         {/* PRODUCTOS */}
                         <div className="space-y-2">
                             {orden.productos.map((item, index) => (
-                                <div key={index} className="flex jusitfy-between text-sm text-gray-300">
+                                <div key={index} className="flex justify-between text-sm text-gray-300">
                                     <span>{item.producto?.nombre} x {item.cantidad}</span>
                                     <span>S/ {item.precio * item.cantidad}</span>
                                 </div>
@@ -71,11 +71,11 @@ function AdminOrdenes() {
                         </div>
                         
                         <div className="flex gap-2">
-                            {item.estado !== "pagado" && (
-                                <button onClick={() => cambiarEstado(item._id, "pagado")} className="px-3 py-1 bg-blue-600 rounded text-sm">Marcar pagado</button>
+                            {orden.estado !== "pagado" && (
+                                <button onClick={() => cambiarEstado(orden._id, "pagado")} className="px-3 py-1 bg-blue-600 rounded text-sm">Marcar pagado</button>
                             )}
-                            {item.estado !== "enviado" && (
-                                <button onClick={() => cambiarEstado(item._id, "enviado")} className="px-3 py-1 bg-green-600 rounded text-sm">Marcar enviado</button>
+                            {orden.estado !== "enviado" && (
+                                <button onClick={() => cambiarEstado(orden._id, "enviado")} className="px-3 py-1 bg-green-600 rounded text-sm">Marcar enviado</button>
                             )}
                         </div>
                         {/* FOOTER */}
