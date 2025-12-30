@@ -53,6 +53,15 @@ function AdminSidebar() {
                 }`}>
                     Productos
                 </NavLink>
+
+                <NavLink to="/admin/ordenes" className={({ isActive }) => `
+                block px-4 py-2 rounded transition
+                ${isActive
+                    ? "bg-red-600 text-white"
+                    : "text-gray-400 hover:bg-slate-800 hover:text-white"
+                }`}>
+                    Ordenes
+                </NavLink>
                 
             </nav>
 

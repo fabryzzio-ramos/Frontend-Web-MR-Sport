@@ -20,6 +20,7 @@ const AdminJugadores = lazy(() => import("./pages/admin/AdminJugadores"));
 const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
 const AdminPartidos = lazy(() => import("./pages/admin/AdminPartidos"));
 const AdminStore = lazy(() => import("./pages/admin/AdminStore"));
+const AdminOrdenes = lazy(() => import("./pages/admin/AdminOrdenes"));
 
 const StoreLayout = lazy(() => import("./pages/store/StoreLayout"));
 const StoreHome = lazy(() => import("./pages/store/StoreHome"));
@@ -65,6 +66,7 @@ function AppLayout() {
                             <Route path="jugadores" element={<AdminJugadores />} />
                             <Route path="partidos" element={<AdminPartidos />} />
                             <Route path="productos" element={<AdminStore />} />
+                            <Route path="ordenes" element={<AdminOrdenes />} />
                         </Route>
 
                         {/* SHOP */}
