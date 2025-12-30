@@ -51,7 +51,7 @@ function Payment() {
 
     return (
         <main className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 flex items-center justify-center p-6">
-            <div className="max-w-lg w-full bg-slate-900 rounded-2xl shadow-2xl p-8 border border-gray-700">
+            <div className="max-w-lg w-full bg-slate-900 rounded-2xl shadow-2xl p-8 border border-gray-700 rounded-2xl">
                 {/* Header con logo o identidad de la tienda */}
                 <div className="text-center mb-8">
                     <h1 className="text-4xl font-extrabold text-white mb-2 tracking-wide">
