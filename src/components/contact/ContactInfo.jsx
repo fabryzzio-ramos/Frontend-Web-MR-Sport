@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion"; // Instala con: npm install framer-motion
 import { MdEmail, MdLocationOn } from "react-icons/md"; // Íconos de Material Design
 import { FaInstagram } from "react-icons/fa"; // Ícono de Font Awesome para Instagram
@@ -25,7 +26,7 @@ function ContactInfo() {
     ];
 
     return (
-        <section className="bg-gradient-to-b from-gray-800 via-gray-900 to-black py-24 px-6 relative overflow-hidden">
+        <section className="bg-gradient-to-b from-gray-800 to-black py-24 px-6 relative overflow-hidden">
             {/* Overlay rojizo sutil para continuidad y tema deportivo */}
             <div className="absolute inset-0 bg-gradient-to-r from-red-900/10 to-transparent opacity-20"></div>
             
