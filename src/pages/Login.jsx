@@ -28,7 +28,7 @@ function Login() {
     }
 
     return (
-        <main className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black flex items-center justify-center px-6 relative overflow-hidden">
+        <main className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black flex items-center justify-center px-6 relative overflow-hidden pt-24"> {/* Cambié pt-20 a pt-24 para bajar más el contenido y que empiece justo donde termina el navbar */}
             {/* Patrón deportivo sutil para identidad del equipo */}
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMiIgZmlsbD0icmVkIiBvcGFjaXR5PSIwLjEiLz4KPC9zdmc+')] opacity-10 bg-repeat"></div>
             
@@ -39,9 +39,9 @@ function Login() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
             >
                 {/* LOGO / CLUB */}
-                <div className="text-center mb-10 mt-10">
+                <div className="text-center mb-10">
                     <motion.div 
-                        className="text-6xl mb-4"
+                        className="text-6xl mb-4 relative z-20"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ duration: 0.6, delay: 0.3 }}
