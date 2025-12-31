@@ -2,9 +2,10 @@ import { motion } from "framer-motion"; // Asegúrate de instalar framer-motion 
 
 function ContactIntro() {
     return (
-        <section className="bg-gradient-to-b from-black via-gray-900 to-black text-white py-20 md:py-32 px-6 text-center relative overflow-hidden">
-            {/* Fondo sutil con patrón o imagen relacionada con fútbol para reforzar identidad */}
-            <div className="absolute inset-0 bg-[url('/path/to/subtle-contact-pattern.png')] opacity-10 bg-cover bg-center"></div>
+        <section className="bg-gradient-to-b from-black via-gray-900 to-gray-800 text-white py-20 md:py-32 px-6 text-center relative overflow-hidden">
+            {/* Fondo con patrón deportivo sutil para continuidad y tema */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-gray-900/80 opacity-90"></div>
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMiIgZmlsbD0icmVkIiBvcGFjaXR5PSIwLjEiLz4KPC9zdmc+')] opacity-10 bg-repeat"></div> {/* Patrón de balón sutil */}
             
             <motion.div 
                 className="relative z-10 max-w-4xl mx-auto"

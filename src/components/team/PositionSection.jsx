@@ -6,7 +6,6 @@ function PositionSection({ title, jugador }) {
         return (
             <section className="mb-16">
                 <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 flex items-center gap-3">
-                    <span className="text-3xl">{getPositionIcon(title)}</span>
                     {title}
                 </h2>
                 <p className="text-gray-400 text-center py-8">No hay jugadores en esta posición por el momento.</p>

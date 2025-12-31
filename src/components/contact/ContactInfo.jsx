@@ -25,8 +25,11 @@ function ContactInfo() {
     ];
 
     return (
-        <section className="bg-black py-24 px-6">
-            <div className="max-w-4xl mx-auto">
+        <section className="bg-gradient-to-b from-gray-800 via-gray-900 to-black py-24 px-6 relative overflow-hidden">
+            {/* Overlay rojizo sutil para continuidad y tema deportivo */}
+            <div className="absolute inset-0 bg-gradient-to-r from-red-900/10 to-transparent opacity-20"></div>
+            
+            <div className="relative z-10 max-w-4xl mx-auto">
                 <motion.h2 
                     className="text-3xl font-bold text-white text-center mb-12"
                     initial={{ opacity: 0, y: -20 }}
@@ -42,7 +45,7 @@ function ContactInfo() {
                             href={item.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-gray-900 p-6 rounded-2xl text-center hover:bg-gray-800 transition duration-300 shadow-lg"
+                            className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-2xl text-center hover:bg-gray-800/90 transition duration-300 shadow-lg border border-gray-700/50"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: index * 0.2 }}
