@@ -1,5 +1,6 @@
 import { motion } from "framer-motion"; // Instala con: npm install framer-motion
-import { MdEmail, MdInstagram, MdLocationOn } from "react-icons/md"; // Instala con: npm install react-icons
+import { MdEmail, MdLocationOn } from "react-icons/md"; // Íconos de Material Design
+import { FaInstagram } from "react-icons/fa"; // Ícono de Font Awesome para Instagram
 
 function ContactInfo() {
     const infoItems = [
@@ -12,7 +13,7 @@ function ContactInfo() {
         {
             label: "Redes",
             value: "Instagram @mrsport.academy",
-            icon: MdInstagram, // Ícono corregido
+            icon: FaInstagram, // Ícono corregido (de Font Awesome)
             link: "https://instagram.com/mrsport.academy"
         },
         {
