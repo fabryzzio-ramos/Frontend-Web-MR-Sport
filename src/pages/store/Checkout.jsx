@@ -18,17 +18,7 @@ function Checkout() {
         setError("");
 
         try {
-            const payload = {
-                productos: cart.map(item => ({
-                    producto: item._id,
-                    precio: item.precio,
-                    cantidad: item.cantidad
-                })),
-                total
-            };
-
-            const ordenResponse = await apiPost("/ordenes", payload);
-            navigate("/tienda/pago", {state:{ordenId:ordenResponse._id,total}});
+            navigate("/tienda/pago", {state: { cart, total }});
         } catch (error) {
             setError("Error al crear la orden");
         } finally {

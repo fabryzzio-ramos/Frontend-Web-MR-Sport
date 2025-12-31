@@ -17,7 +17,7 @@ function Payment() {
     const [error, setError] = useState("");
 
     async function confirmarPago() {
-        if (!ordenId) {
+        if (!cart || cart.length === 0) {
             setError("No se encontro la orden. Regresa al chekout");
             return;
         }
@@ -35,13 +35,18 @@ function Payment() {
 
         try {
             const formData = new FormData();
+            formData.append("productos", JSON.stringify(cart.map(item => ({
+                producto: item._id,
+                precio: item.precio,
+                cantidad: item.cantidad
+            }))));
             formData.append("metodoPago", metodo);
             formData.append("comprobante", comprobante);
 
-            await apiPost(`/ordenes/${ordenId}/pago`, formData, true);
+            const ordenResponse = await apiPost("/ordenes", formData, true);
 
             clearCart();
-            navigate("/orden-exitosa");
+            navigate("/tienda/compra-exitosa");
         } catch (error) {
             setError("Error al confirmar pago"+ (err.message || "Intenta de nuevo"));
         } finally {
