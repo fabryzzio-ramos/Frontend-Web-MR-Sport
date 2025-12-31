@@ -128,11 +128,20 @@ function NavBar() {
                 {open && (
                     <div 
                         id="mobile-menu"
-                        className="fixed inset-0 z-40 bg-gradient-to-b from-black/95 to-gray-900/95 backdrop-blur-lg flex flex-col items-center justify-center gap-8 text-xl animate-slide-in-right" 
+                        className="fixed inset-0 z-60 bg-gradient-to-b from-black/95 to-gray-900/95 backdrop-blur-lg flex flex-col items-center justify-center gap-8 text-xl animate-slide-in-right" 
                         role="dialog" 
                         aria-modal="true"
                         onClick={() => setOpen(false)} // Cierra al hacer clic fuera
                     >
+                        {/* Botón de cerrar en la esquina superior derecha */}
+                        <button 
+                            onClick={() => setOpen(false)} 
+                            aria-label="Cerrar menú"
+                            className="absolute top-6 right-6 text-white text-3xl hover:text-red-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-red-500 rounded-md p-2"
+                        >
+                            ✕
+                        </button>
+
                         {/* Contenedor interno para evitar cierre accidental en enlaces */}
                         <div className="flex flex-col items-center gap-8" onClick={(e) => e.stopPropagation()}>
                             {navLinks.map(link => (
