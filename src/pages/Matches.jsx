@@ -61,18 +61,6 @@ function Matches() {
                 <MonthFilter mesActual={mesActual} setMesActual={setMesActual} />
                 <MatchesTable partidos={partidosFiltrados} />
             </motion.div>
-
-            {/* Footer sutil para cerrar la página */}
-            <motion.footer 
-                className="relative z-10 text-center mt-20 py-8 border-t border-gray-700"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 1 }}
-            >
-                <p className="text-gray-400 text-sm">
-                    © 2023 MR Sport. Todos los derechos reservados. | Vive la emoción del fútbol con nosotros.
-                </p>
-            </motion.footer>
         </main>
     );
 }

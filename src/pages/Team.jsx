@@ -56,13 +56,6 @@ function Team() {
                 <PositionSection title="Mediocampistas" jugador={mediocampista} />
                 <PositionSection title="Delanteros" jugador={delantero} />
             </div>
-
-            {/* Footer sutil para cerrar la página */}
-            <footer className="relative z-10 text-center mt-20 py-8 border-t border-gray-700">
-                <p className="text-gray-400 text-sm">
-                    © 2023 MR Sport. Todos los derechos reservados. | Orgullosamente representando la pasión del fútbol.
-                </p>
-            </footer>
         </main>
     );
 }
