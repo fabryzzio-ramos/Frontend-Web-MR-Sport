@@ -39,7 +39,7 @@ function Login() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
             >
                 {/* LOGO / CLUB */}
-                <div className="text-center mb-10">
+                <div className="text-center mb-10 mt-10">
                     <motion.div 
                         className="text-6xl mb-4"
                         initial={{ scale: 0 }}
