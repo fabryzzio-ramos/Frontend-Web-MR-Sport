@@ -1,22 +1,6 @@
 import { motion } from "framer-motion"; // Asegúrate de instalar framer-motion si no lo tienes
 import PlayerCard from "./PlayerCard";
 
-// Función para obtener íconos o emojis relacionados con posiciones (puedes reemplazar con íconos SVG si prefieres)
-const getPositionIcon = (title) => {
-    switch (title) {
-        case "Porteros":
-            return "🥅"; // Guantes de portero
-        case "Defensas":
-            return "🛡️"; // Escudo
-        case "Mediocampistas":
-            return "⚽"; // Balón
-        case "Delanteros":
-            return "🎯"; // Blanco
-        default:
-            return "⚽";
-    }
-};
-
 function PositionSection({ title, jugador }) {
     if (jugador.length === 0) {
         return (
@@ -37,9 +21,8 @@ function PositionSection({ title, jugador }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
         >
-            {/* Título mejorado con ícono y estilo profesional */}
+            {/* Título mejorado con estilo profesional */}
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 flex items-center gap-3 border-b-2 border-gray-600 pb-2">
-                <span className="text-3xl">{getPositionIcon(title)}</span>
                 {title}
             </h2>
 

@@ -32,7 +32,7 @@ function Matches() {
     });
 
     return (
-        <main className="bg-gradient-to-b from-black via-gray-900 to-black min-h-screen px-6 md:px-20 py-16 relative overflow-hidden">
+        <main className="bg-gradient-to-b from-black via-gray-900 to-black min-h-screen px-6 md:px-20 py-16 relative overflow-hidden mt-4">
             {/* Fondo sutil con patrón o imagen relacionada con fútbol para reforzar identidad */}
             <div className="absolute inset-0 bg-[url('/path/to/subtle-football-pattern.png')] opacity-10 bg-cover bg-center"></div>
 
