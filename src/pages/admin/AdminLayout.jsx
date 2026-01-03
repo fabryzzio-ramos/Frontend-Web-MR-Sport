@@ -57,9 +57,7 @@ function AdminLayout() {
     return (
         <div className="min-h-screen flex bg-gradient-to-br from-slate-950 to-slate-900 text-white transition-all duration-300">
 
-        <aside className="w-64 md:w-72 lg:w-80 bg-slate-900 shadow-lg transition-transform duration-300">
             <AdminSidebar />
-        </aside>
         
         <main
             className="flex-1 p-4 md:p-8 overflow-auto"
