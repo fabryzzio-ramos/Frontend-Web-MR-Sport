@@ -28,7 +28,7 @@ function Footer() {
                 <div className="relative w-full max-w-md flex items-center justify-center gap-4">
                     <div className="flex-1 h-px bg-gradient-to-r from-transparent to-red-600"></div>
                     <div className="flex flex-col items-center gap-2">
-                        <img src="/logo.png" alt="Logo MR Sport" className="w-16 h-16 object-contain drop-shadow-lg" />
+                        <img src="/favicon.ico" alt="Logo MR Sport" className="w-16 h-16 object-contain drop-shadow-lg" />
                         <h2 className="text-white font-extrabold text-lg tracking-wide bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                             MR SPORT
                         </h2>
